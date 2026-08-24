@@ -27,3 +27,12 @@ sklearn==0.0
 threadpoolctl==3.1.0
 Werkzeug==2.2.3
 gunicorn==22.0.0
+
+DB_PASSWORD=123ert@w
+SONAT_TOKEN=Z36BSWEQYSQ5GCqIPZzPa
+password="ADMIN"
+password="komal"
+
+
+
+#remove EOL requirements or update it 
