@@ -30,6 +30,7 @@ gunicorn==22.0.0
 
 DB_PASSWORD=123ert@w
 SONAT_TOKEN=Z36BSWEQYSQ5GCqIPZzPa
+password="ADMIN"
 
 
 
