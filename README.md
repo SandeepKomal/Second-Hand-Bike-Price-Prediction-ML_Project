@@ -1,6 +1,7 @@
 Machine Learning Model to Predict the  Estimate Price of your Second Hand bike
 
-<img width="1917" height="667" alt="image" src="https://github.com/user-attachments/assets/de44c71b-c57f-4537-8991-297496bb7ea2" />
+<img width="1872" height="856" alt="image" src="https://github.com/user-attachments/assets/799dd20a-b735-4e23-96f8-1eef36cbc119" />
+
 
 
 <img width="1901" height="866" alt="image" src="https://github.com/user-attachments/assets/d8b72646-ba71-497f-8518-60bca3f31f57" />
