@@ -9,3 +9,25 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+
+
+version: 2
+updates:
+  - package-ecosystem: ""
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    ignore:
+      # Only suggest patch updates. Rest is manually controlled.
+      - dependency-name: "github.com/SandeepKomal/Second-Hand-Bike-Price-Prediction"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+      # Ignore argo-cd altogether. Needs `make update-dependencies` to be done correctly.
+      - dependency-name: "github.com/SandeepKomal/Second-Hand-Bike-Price-Prediction"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
