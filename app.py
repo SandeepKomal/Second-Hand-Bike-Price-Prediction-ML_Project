@@ -42,6 +42,13 @@ class SearchLog(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
+# Create the table on import -- this runs whether the app is started via
+# `python app.py` OR via gunicorn (gunicorn never executes the
+# `if __name__ == "__main__":` block below, so create_all() has to live here).
+with app.app_context():
+    db.create_all()
+
+
 def get_or_create_user_id():
     """Give every visitor a stable anonymous ID, stored in their browser cookie."""
     if "user_id" not in session:
@@ -113,6 +120,4 @@ def my_searches():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()   # creates the search_logs table in Postgres if not already there
     app.run(host='0.0.0.0', port=8000, debug=False)
