@@ -27,3 +27,5 @@ sklearn==0.0
 threadpoolctl==3.1.0
 Werkzeug==2.2.3
 gunicorn==22.0.0
+flask-sqlalchemy
+psycopg2-binary
