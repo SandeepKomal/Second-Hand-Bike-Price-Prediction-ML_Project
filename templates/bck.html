@@ -1,1666 +1,1225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>bike valuation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MotoGauge</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  var citiesByState = {
+      AndhraPradesh:[' Visakhapatnam', ' Vizianagaram', ' Guntur', ' Phirangipuram',
+       ' Adoni', ' Nellore', ' Vijayawada', ' Gundugolanu', ' Chodavaram',
+       ' Nandyal', ' Gajapathinagaram', ' Kakinada', ' Gooty', ' Tanuku',
+       ' Bhimavaram', ' Dharmavaram', ' Chittoor', ' Kurnool',
+       ' Tirupati', ' Edlapadu', ' Kadapa', ' Pedana', ' Srikakulam',
+       ' Punganur', ' Narsipatnam', ' Thatipaka', ' Rayachoti',
+       ' Peddapuram', ' Andhra Pradesh', ' Mydukur', ' Proddatur',
+       ' Badvel', ' Tenali', ' Giddaluru', ' Chilakalurupet',
+       ' Amalapuram', ' Koikuntla', ' Anakapalle', ' Kankipadu',
+       ' Ramachandrapuram', ' Gudivada', ' Rushikonda APIIC',
+       ' Narasannapeta', ' Eluru', ' Anantapur', ' Rajahmundry',
+       ' Kuppam', ' Machilipatnam', ' Narasapur', ' Sanivarapupeta',
+       ' Kaikaram', ' Bobbili', ' Tadepalligudem', ' Anaparthy', ' Dhone',
+       ' Palacole', ' Nagireddipalle', ' Piduguralla', ' Macherla',
+       ' Bandarulanka', ' Tadpatri', ' Kavali', ' Hindupur',
+       ' Murakambattu', ' Madhurawada', ' Madanapalle', ' Singarayakonda',
+       ' Atmakur Sri Potti Sriramulu', ' Pithapuram', ' Jaggaiahpet',
+       ' Draksharamam', ' Peda Boddepalle', ' Guntakal', ' Yemmiganur',
+       ' Palasa Kasibugga', ' Vuyyuru', ' Ongole', ' Chirala',
+       ' Markapur', ' Podili', ' Pileru', ' Pedatadepalli',
+       ' Parvathipuram', ' Narasaraopet', ' Medarametla', ' Kanapaka',
+       ' Maruteru', ' Rajampet', ' Dowleswaram', ' Payakaraopeta',
+       ' Kandukur', ' Paravada Industrial Area', ' Kathipudi',
+       ' Prattipadu', ' Repalle', ' Vinukonda', ' Amadalavalasa',
+       ' Pulivendula', ' Yenugonda', ' Tuni', ' Kanigiri',
+       ' Mamidalapadu', ' Palamaner', ' Chipurupalle', ' Kadiri',
+       ' Somandepalle', ' Mangalagiri', ' Allur', ' Achanta'], 
+       Rajasthan:[' Jodhpur', ' Jaipur', ' Sikar', ' Udaipur', ' Bikaner', ' Kherli',
+       ' Nimbahera', ' Chittorgarh', ' Losal', ' Sheoganj', ' Kota',
+       ' Beawar', ' RIICO Industrial Area Khushkhera', ' Alwar', ' Nokha',
+       ' Churu', ' Sawai Madhopur', ' Dausa', ' Balotra', ' Pali',
+       ' Rajgarh', ' Bagru', ' Boranada Special Economic Zone',
+       ' Kuchaman City', ' Malpura', ' Kotputli', ' Rajasthan', ' Bundi',
+       ' Sirohi', ' Sanchore', ' Bhilwara',
+       ' RIICO Industrial Area Bassi', ' Sri Madhopur',
+       ' Jodhpur Stone Park Industrial Area', ' BITS Pilani Campus',
+       ' Hanumangarh', ' Gangapur City', ' Ajmer', ' Sri Ganganagar',
+       ' Bhiwadi', ' Mathania', ' Barmer', ' Samdari', ' Behror', ' Bhim',
+       ' Makrana', ' Sambhar', ' Sadulshahar', ' Chaksu', ' Manoharthana',
+       ' Bishangarh', ' Sarwar', ' Todaraisingh',
+       ' Kishangarh Ajmer District', ' Tonk', ' Chomun', ' Nawalgarh',
+       ' Rajsamand', ' Baran', ' Suratgarh', ' Khairthal',
+       ' Chhoti Sadri', ' Pilani Town', ' Bharatpur', ' Dhaulpur',
+       ' Hindaun', ' Chirawa', ' Bandikui', ' Nadbai', ' Churu District',
+       ' Nagaur', ' Ajeetgarh', ' Merta City', ' Jhunjhunun', ' Mangrol',
+       ' Lachhmangarh', ' Ladnu', ' Bissau', ' Kishangarh Alwar District',
+       ' Bhadra', ' Surajgarh', ' Rani Sagar RIICO', ' Rawatsar', ' Deeg',
+       ' Phulera', ' Danta', ' Mehandipur', ' Aligarh', ' Nawa',
+       ' Anupgarh', ' Ramganj Mandi', ' Raisinghnagar',
+       ' Sumerpur Industrial Area', ' Jaitaran', ' Didwana', ' Bhinmal',
+       ' Ranthambore', ' Jaisalmer', ' Abu Road',
+       ' RIICO Industrial Area Neemrana', ' Deoli', ' Kekri', ' Ahore',
+       ' Pratapgarh', ' Khatu', ' Udaipurwati', ' Chhabra', ' Bayana',
+       ' Sadri', ' Kuchera'], 
+       chandigarh:[' Chandigarh', ' Ludhiana', ' Karoran', ' Mohali', ' Panchkula',
+       ' Zirakpur', ' Chandi Mandir', ' Banur', ' Kharar', ' Dera Bassi',
+       ' Rajpura', ' Ambala', ' Sirhind Fatehgarh Sahib', ' Rupnagar',
+       ' Morinda', ' Naraingarh', ' Lalru', ' Haryana', ' Kurali'], 
+       Tamil_Nadu:[' Vellalur', ' Tuticorin', ' Chennai', ' Kuthalam',
+       ' Tiruchirappalli', ' Tamil Nadu', ' Thanjavur', ' Puduchatram',
+       ' Madurai', ' Gudiyatham', ' Tirupattur', ' Manamadurai',
+       ' Tirunelveli', ' Padirikuppam', ' Madukkur', ' Coimbatore',
+       ' Nagercoil', ' Periyamanali', ' Hosur', ' Erode', ' Tiruppur',
+       ' Vadipatti', ' Kayalpattinam', ' Krishnagiri', ' Neyveli',
+       ' Salem', ' Pudukkottai', ' Melpattampakkam', ' Thiruparankundram',
+       ' Manapparai', ' Anaiyur', ' Padappai', ' Virudhunagar',
+       ' Mayiladuthurai', ' Tenkasi', ' Cuddalore', ' Usilampatti',
+       ' Thiruvaiyaru', ' Vedaranyam', ' Kallakkurichi', ' Devadanapatti',
+       ' Sathankulam', ' Mohamed Bundur', ' Sivaganga', ' Thevaram',
+       ' Gummidipoondi', ' Sarcarsamakulam', ' Virudhachalam',
+       ' Rasipuram', ' Tiruvannamalai', ' Mulagumudu', ' Pacode',
+       ' Thiruvenkadam', ' Palangarai', ' Kovilpatti', ' Tambaram',
+       ' Vellore', ' Muttayyapuram', ' Sirumugai', ' Swamimalai',
+       ' Thiruporur', ' Tiruchendur', ' Devarshola', ' Nanjikottai',
+       ' Marthandam', ' Thisayanvilai', ' A Vellalapatti', ' Velur',
+       ' Palamedu', ' SIPCOT Perundurai', ' Melvisharam', ' Ambur',
+       ' Kariapatti', ' Thirumangalam', ' Tharangambadi', ' Ariyalur',
+       ' Chengalpattu', ' Paramakudi', ' Kumbakonam', ' Gangavalli',
+       ' Palladam', ' Athipatti', ' Ambasamudram', ' Ambattur', ' Ilanji',
+       ' Tiruchengode', ' Nandivaram-Guduvancheri', ' Orathanadu',
+       ' Karur', ' Palani', ' Thiruvarur', ' Kancheepuram',
+       ' Kulasekaram', ' Kolachal', ' Theni Allinagaram', ' Pollachi',
+       ' Kasipalayam', ' Ranipettai', ' Nagapattinam', ' Anthiyur',
+       ' Kuhalur', ' Perundurai', ' Malumichampatti', ' Sankarankoil',
+       ' Thathankuttai Nagapattinam District', ' Mettur', ' Ponneri',
+       ' Arcot', ' Gobichettipalayam', ' Sulur', ' Kakkalur', ' Dindigul',
+       ' Villupuram', ' Thottiyam', ' Ooty', ' Komarapalayam',
+       ' Balakrishnapuram', ' Thiruvallur', ' Madambakkam', ' Thuraiyur',
+       ' Vandavasi', ' Avadi', ' Dharapuram', ' Sirkali',
+       ' Maduranthakam'],
+       Jharkhand:[' Ranchi', ' Deoghar', ' Jamshedpur', ' Hazaribagh',
+       ' Jaridih Bazar', ' Bokaro Steel City', ' Kanke', ' Jharia Khas',
+       ' Giridih', ' Pakaur', ' Danguwapasi', ' Dhanbad', ' Mihijam',
+       ' Irba', ' Daltonganj', ' Bhuli', ' Palawa', ' Jasidih',
+       ' Latehar', ' Ramgarh Cantonment', ' Jamadoba', ' Lohardaga',
+       ' Ray', ' Sindri', ' Rajbhita', ' Jhumri Tilaiya', ' Telodih',
+       ' Jorapokhar', ' Chaibasa', ' Jharkhand', ' Nirsa', ' Phusro',
+       ' Domchanch', ' Borio', ' Barharwa', ' Basukinath', ' Churi',
+       ' Netarhat', ' Rehla', ' Gumla', ' Ratu', ' Barhi', ' Madhupur',
+       ' Baliari', ' Bermo', ' Sahibganj', ' Musabani', ' AEC Complex',
+       ' Charhi', ' Patratu', ' Bokaro Thermal Township', ' Isri',
+       ' Topchanchi', ' Bishnugarh', ' Ghatshila', ' Kodarma',
+       ' Gobindpur', ' Chatra', ' Ramgarh', ' Khunti', ' Saunda',
+       ' Godda', ' Dumka', ' Kuju', ' Lalpania', ' Baharagora', ' Garhwa',
+       ' Karma Tanr', ' Pathardih', ' Simdega', ' Chakulia',
+       ' Chakradharpur', ' Kailudih', ' Chauparan', ' Chirkunda',
+       ' Baua Kalan', ' Hussainabad', ' Gomoh', ' Okni No 2', ' Panchet',
+       ' Chandwa', ' Katras', ' Dhanwar', ' Jhinkpani', ' Mera',
+       ' Lakarka', ' Tenu', ' Deorikalan'], 
+       Maharashtra:[' Nashik', ' Mumbai', ' Sangli (-Miraj)', ' Shevgaon', ' Bhiwandi',
+       ' Latur', ' Sillod', ' Bhusawal', ' Satara', ' Wardha', ' Pune',
+       ' Thane', ' Navi Mumbai', ' Ichalkaranji', ' Malegaon', ' Ramtek',
+       ' Nagpur', ' Desaiganj', ' Chalisgaon', ' Majgaon', ' Sakoli',
+       ' Jamner', ' Chinchwad', ' Aurangabad', ' Amravati', ' Tumsar',
+       ' Hingoli', ' Boisar', ' Ulhasnagar', ' Nanded', ' Pandharpur',
+       ' Badlapur', ' Satana', ' Dadar', ' Akola', ' Karad', ' Kolhapur',
+       ' Maharashtra', ' Shendra MIDC', ' Pauni', ' Jawhar', ' Ratnagiri',
+       ' Hinganghat', ' Waluj MIDC', ' Ambajogai', ' Raigad District',
+       ' Nanded Waghala', ' Yavatmal', ' Wani', ' Guhagar', ' Shikrapur',
+       ' Ghoti', ' Bid', ' Indapur', ' Vada', ' Ahmadnagar', ' Faizpur',
+       ' Navghar-Manikpur', ' Manor', ' Naigaon', ' Udgir',
+       ' Roha Ashtami', ' Sonpeth', ' Dehu Cantt', ' Parbhani',
+       ' Vangani', ' Niphad', ' Tirora', ' Achalpur', ' Motala',
+       ' Jalgaon', ' Ellora', ' Khamgaon', ' Kagal', ' Rajgurunagar Khed',
+       ' Buldana', ' Waghoda', ' Dhule', ' Georai', ' Lonavala',
+       ' Phaltan', ' Loni Kalbhor', ' Kudal', ' Butibori', ' Akkalkuwa',
+       ' Murgud', ' Paithan', ' Shirur', ' Umri', ' Nandgaon', ' Morshi',
+       ' Gondiya', ' Kopargaon', ' Sangamner', ' Hudkeshwar',
+       ' Jaysingpur', ' Varangaon', ' Solapur', ' Bhandara', ' Navapur',
+       ' Bori Parbhani District', ' Manmad', ' Chandrapur',
+       ' Kadegaon MIDC', ' Ausa', ' Vita', ' Osmanabad'], Haryana:[' Panchkula', ' Ambala', ' Sonipat', ' Buria', ' Yamunanagar',
+       ' Kalanaur', ' Rewari', ' Mahendragarh', ' Karnal', ' Tohana',
+       ' Uklanamandi', ' Hisar', ' Faridabad', ' Gurgaon', ' Panipat',
+       ' Rohtak', ' Kalayat', ' Ganaur', ' Nissing', ' Bhiwani',
+       ' Gharaunda', ' Julana', ' Nagal Chaudhry', ' Farrukhnagar',
+       ' Haryana', ' Palwal', ' Charkhi Dadri', ' Ladwa', ' Bawal',
+       ' Naraingarh', ' Pinjore', ' Kurukshetra', ' Fatehabad',
+       ' Bahadurgarh', ' Sirsa', ' Jind', ' Hansi', ' Maham', ' Narnaul',
+       ' Sampla', ' Kalka', ' Gohana', ' Kharkhoda', ' Loharu',
+       ' Kaithal', ' Adampur', ' Kanina', ' Dharuhera', ' Jhajjar',
+       ' Rai Industrial Area', ' Chhachhrauli', ' Uchana', ' Pehowa',
+       ' Taoru', ' Siwani', ' Cheeka', ' Kundli Industrial Area',
+       ' Shahbad', ' Beri', ' Ratia', ' Kalanwali', ' Barara', ' Bhakali',
+       ' Safidon', ' Narnaund', ' Taraori', ' Panipat Refinery Township',
+       ' Binola Industrial Area', ' Ellenabad', ' Ismailabad', ' Barwala',
+       ' Ladrawan', ' Nuh', ' Sankhol', ' Pundri', ' Saha',
+       ' Chandi Mandir', ' Assandh', ' Ateli'], 
+       Kerala:[' Thiruvananthapuram', ' Wayanad', ' Kannur', ' Kottakal',
+       ' Taliparamba', ' Kochi', ' Manjeri', ' Punalur', ' Kozhikode',
+       ' Kottayam', ' Kothamangalam', ' Pantheeramkavu', ' Malappuram',
+       ' Chendamangalam', ' Kasaragod', ' Koratty', ' Panniyannur',
+       ' Paravur', ' Nannambra', ' Oachira', ' Ettumanoor', ' Vengola',
+       ' Pathanamthitta', ' Aluva', ' Guruvayur', ' Cheleri', ' Nilambur',
+       ' Kallelibhagom', ' Ottappalam', ' Mannarkad I', ' Palakkad',
+       ' Elampalloor', ' Kanhangad', ' Thrissur', ' Kumarakom',
+       ' Angamaly', ' Thodupuzha', ' Muvattupuzha', ' Peringathur',
+       ' Iringaprom', ' Villiappally', ' Vadakkekara', ' Erattupetta',
+       ' Pallikkal', ' Changanacheri', ' Venginissery', ' Attingal',
+       ' Vazhayur', ' Pottore', ' Irinjalakuda', ' Varappuzha', ' Kollam',
+       ' Neyyattinkara', ' Kayamkulam', ' Kalpetta', ' Mattannur',
+       ' Karunagappally', ' Kunnamkulam', ' Iriveri', ' Kodungallur',
+       ' Iringal', ' Kolazhy', ' Puthuppally', ' Cherthala',
+       ' Kunnathunad', ' Idukki Township', ' Parappur', ' Mayyanad',
+       ' Thrikkaruva', ' Perumbavoor', ' Elayavoor', ' Edathiruthy',
+       ' Avittathur', ' Kizhuparamba', ' Chalakudy', ' Alappuzha',
+       ' Munnar', ' Kondotty', ' Vylathur', ' Ayancheri',
+       ' Mulamthuruthy', ' Vadama', ' Alathur', ' Puthukkad',
+       ' Parasuvaikkal', ' Kodur', ' Manantheri', ' Nenmenikkara',
+       ' Alamcode Thiruvananthapuram District', ' Uppala', ' Panachikkad',
+       ' Vaikom', ' Choondal', ' Nedumangad', ' Mavelikkara',
+       ' Venkitangu', ' Chengamanad', ' Kadungalloor', ' Perole',
+       ' Vaniyamkulam II', ' Talakkad', ' Kulathummal', ' Kadamakkudy',
+       ' Vadakkekad', ' Palai', ' Paravoor', ' Dharmadom',
+       ' Cheruthazham', ' Varkala', ' Veluthur', ' Azhikode', ' Edappal',
+       ' Perinthalmanna', ' Vilappil', ' Marancheri', ' Vengara',
+       ' Manakunnam', ' Kuttippuram', ' Alur', ' Shoranur',
+       ' Kozhenchery', ' Panayam', ' Choornikkara', ' Payyannur',
+       ' Thiruvalla', ' Thrikkadavoor', ' Anthicad', ' Karikkad',
+       ' Kuruvattur', ' Poomangalam', ' Edavilangu', ' Meenad',
+       ' Olavanna', ' Eramalloor', ' South Thrikkaripur', ' Beypore',
+       ' Mavoor', ' Kalady Ernakulam District', ' Pavaratty',
+       ' Thalassery', ' Tirur', ' Kattappana', ' Kadikkad', ' Chowwara',
+       ' Kudlu'],
+        MadhyaPradesh:[' Jabalpur', ' Ujjain', ' Shujalpur', ' Bhopal',
+       ' Makronia Buzurg', ' Indore', ' Chhindwara', ' Shahdol', ' Rewa',
+       ' Guna', ' Mhow', ' Pasan', ' Betul', ' Morena', ' Karera',
+       ' Vindhya Nagar NTPC Township', ' Datia', ' Bamhani', ' Bhind',
+       ' Itarsi', ' Gwalior', ' Sihora', ' Sarni', ' Ratlam',
+       ' Katangi Balaghat District', ' Vidisha', ' Neemuch', ' Mehgaon',
+       ' Kasrawad', ' Burhanpur', ' Seoni', ' Singrauli', ' Panna',
+       ' Shahpur Sagar District', ' Harda', ' Bhanpura', ' Sonkatch',
+       ' Shivpuri', ' Madhya Pradesh', ' Ashoknagar', ' Anjad', ' Namli',
+       ' Dewas', ' Rajgarh Rajgarh District', ' Alot', ' Nagda',
+       ' Maneri Industrial Growth Centre', ' Pithampur', ' Basoda',
+       ' Niwari', ' Dhodaramohar Alias Bhoura', ' Burhar', ' Malajkhand',
+       ' Garra', ' Manasa', ' Sohagpur', ' Waraseoni', ' Satna',
+       ' Sanwer', ' Pipariya', ' Mandsaur', ' Kareli', ' Mandla',
+       ' Multai', ' Tikamgarh', ' Gadarwara', ' Hoshangabad', ' Sidhi',
+       ' Sanchi', ' Depalpur', ' Sheopur', ' Dabra', ' Malhargarh',
+       ' Khandwa', ' Pandhana', ' Raisen', ' Khargone', ' Gohad',
+       ' Sagar', ' Murwara Katni', ' Berasia', ' Porsa', ' Shajapur',
+       ' Narsimhapur', ' Chandameta Butaria', ' Dhamnod Dhar District',
+       ' Seoni Malwa', ' Ghoda Dongri Ryt', ' Mangalya', ' Seondha',
+       ' Tarana', ' Chhota Chhindwara', ' Pithampur Industrial Hub',
+       ' Jaora', ' Raymond Chhindwara', ' Alirajpur', ' Mandideep',
+       ' Rau', ' Ashta', ' Joura', ' Sehore', ' Sendhwa', ' Jobat',
+       ' Bina-Etawa', ' Semaria', ' Aron', ' Mungaoli', ' Nowgong',
+       ' Badnagar', ' Barghat', ' Balaghat', ' Banda'],
+       Odisha:[' Baleshwar', ' Sambalpur', ' Berhmapur', ' Godiputamatiapara',
+       ' Choudwar', ' Bhubaneshwar', ' Dhamanagar', ' Cuttack',
+       ' Sundargarh', ' Nagaon', ' Rambha', ' Rourkela', ' Junagarh',
+       ' Bargarh', ' Kantabanji', ' Gourdanda', ' G Udayagiri',
+       ' Lanjigarh', ' Anugul', ' Kamakshyanagar', ' Parlakhemundi',
+       ' Odisha', ' Puri', ' Bhadrak', ' Kendujhar', ' Karanjia',
+       ' Patrapur', ' Baripada', ' Joda', ' Dhenkanal', ' Lathikata',
+       ' Kalinga Nagar Industrial Area', ' Jhumpura', ' Balakati',
+       ' Kansbahal', ' Phulabani', ' Kesinga', ' Ranapurgada',
+       ' Malkangiri', ' OCL Industrial Township', ' Udala', ' Byasanagar',
+       ' Jharsuguda', ' Balugaon', ' Banki', ' Chhatrapur', ' Hirakud',
+       ' Khariar', ' Belpahar', ' Chandili', ' Golabandha', ' Remuna',
+       ' Jajapur', ' Kendrapara', ' Barapali', ' Brajarajnagar',
+       ' Badamba', ' Kochinda', ' Daringbadi', ' Chikiti', ' Papadahandi',
+       ' Burla', ' Pipili', ' Barbil', ' Jeypur', ' Buguda', ' Itamati',
+       ' Pattamundai', ' Kanheipur', ' Anjira', ' Jatani', ' Boudh',
+       ' Jaleswar', ' Charibatia', ' Balangir', ' Rajasunakhala',
+       ' Vedanta Jharsuguda', ' Khaliapali',
+       ' Talcher Thermal Power Station Township', ' Nayagarh',
+       ' Anandapur', ' Bhanjanagar', ' Brahmabarada', ' Sonapur',
+       ' Nuapatna', ' Bhuban', ' Nimapada', ' Banapur', ' Bhawanipatna',
+       ' Padmapur', ' Soro', ' JSPL Town Anugul Township',
+       ' Badmal Township', ' Jagatsinghapur', ' Krushnanandapur',
+       ' Majhihara', ' Nabarangapur', ' Bijepur', ' Asika', ' Titlagarh',
+       ' Talcher', ' Sohela', ' Polasara', ' Patnagarh', ' Tusura',
+       ' Dera Colliery Township', ' Tangi',
+       ' Bhushan Steel Plant Meramandali Township', ' Ganjam'],
+        Bihar:[' Barbigha', ' Bihar', ' Harnaut', ' Rajgir', ' Warisaliganj',
+       ' Silao', ' Patna', ' Mahnar Bazar', ' Fatwah', ' Nawada',
+       ' Sheikhpura', ' Barh', ' Mokameh', ' Ekangar Sarai', ' Hilsa',
+       ' Islampur', ' Hisua', ' Samastipur', ' NTPC Barh Township',
+       ' Masaurhi', ' Bakhtiarpur', ' Mohiuddinagar', ' Gaya'], 
+       Gujarat:[' Surat', ' Limbdi', ' Amreli', ' Vapi', ' Bharuch', ' Ahmedabad',
+       ' Navsari', ' Pardi', ' Vadodara', ' Rajkot', ' Dharampur',
+       ' Saputara', ' Dohad', ' Junagadh', ' Nadiad', ' Jamnagar',
+       ' Patdi', ' Petlad', ' Anand', ' Dhrangadhra', ' Vyara',
+       ' Bhavnagar', ' Padra', ' Anklesvar', ' Bhuj', ' Bardoli',
+       ' Palej', ' Tarsadi', ' Mahuva', ' Tharad', ' Dahej SIR',
+       ' Virpur Rajkot District', ' Gandhidham', ' Chalala',
+       ' Mandvi Kachchh District', ' Viramgam', ' Gandhinagar',
+       ' Bhachau', ' Surendranagar', ' Patan', ' Sihor', ' Unjha',
+       ' Valsad', ' Halol', ' Vijapur', ' Mundra', ' Mahesana', ' Jasdan',
+       ' Wankaner', ' Botad', ' Sutrapada', ' Chanod', ' Khambhalia',
+       ' Kharach', ' Kheralu', ' Palanpur', ' Gondal', ' Godhra',
+       ' Chanasma', ' Ambaliyasan', ' Umrala', ' Kakoshi', ' Halvad',
+       ' Karjan', ' Chorwad', ' Upleta', ' Songadh Tapi District',
+       ' Bechar Alias Becharaji', ' Keshod', ' Khambhat', ' Jambusar',
+       ' Baben', ' Porbandar', ' Dwarka', ' Una', ' Sarigam', ' Somnath',
+       ' Rajula', ' Balasinor', ' Veraval', ' Paddhari', ' Kalol',
+       ' Savarkundla', ' Gujarat', ' Jamjodhpur', ' Lunawada', ' Bhanvad',
+       ' Harij', ' Songadh Bhavnagar District', ' Sojitra', ' Bilimora',
+       ' Mangrol', ' Disa', ' Jamavala'],
+        West_Bengal:[' West Bengal', ' Ranaghat', ' Kolkata', ' Rajpur Sonarpur',
+       ' Gangarampur', ' Balichak', ' Jaynagar Mazilpur', ' Bidhannagar',
+       ' Raiganj', ' Kharagpur', ' Garh Kamalpur', ' Mathabhanga',
+       ' Medinipur', ' Hingalganj', ' Hooghly', ' Memari', ' Siliguri',
+       ' Milki', ' Ilambazar', ' Chaltia', ' Howrah',
+       ' Chandpur North Twenty Four Parganas District', ' Krishnanagar',
+       ' Durgapur', ' Deulia', ' Uttar Bagdogra', ' Kalimpong',
+       ' Chandannagar M.C.', ' Bally', ' Kalyani', ' Bardhaman',
+       ' Haringhata Farm', ' Chakdah', ' Suri', ' Bhangar Raghunathpur',
+       ' Baktarnagar', ' Malda', ' Koch Bihar', ' New Town', ' Deara',
+       ' Darjeeling', ' Serampore', ' Jiaganj Azimganj', ' Koyra',
+       ' Malbazar', ' Sainthia', ' Hijuli', ' Labhpur', ' Sobhaganj',
+       ' Jalpaiguri', ' Aiho', ' Parasia', ' Dalkhola', ' Asansol MC',
+       ' Alipurduar Rly Jnc', ' Behrampore', ' Lataguri',
+       ' Jagadanandapur', ' Alipurduar', ' Dhulasimla', ' Kotulpur',
+       ' Beldanga', ' Kodalia', ' Uttar Pirpur',
+       ' Raghunathpur Hugli District', ' Habra', ' Puruliya',
+       ' Shimulpur', ' Dhanyakuria', ' Bolpur', ' Haldia',
+       ' Banarhat Tea Garden', ' Mira', ' Anup Nagar', ' Rampurhat',
+       ' Raniganj', ' Bagula', ' Durllabhganj', ' Bankra', ' Kakdihi',
+       ' Nagdaha', ' Rangabhita', ' Chanddandaha', ' Jaygaon',
+       ' Samudragarh', ' Bansberia', ' Naridana', ' Sonamukhi',
+       ' Guskara', ' Kurseong', ' Chamrail',
+       ' Bakreshwar Thermal Power Township', ' Madhyamgram', ' Matla',
+       ' Mirik', ' Tamluk', ' Ukhra', ' Harharia Chak', ' Podara',
+       ' Kandi', ' Champdani', ' Murshidabad', ' Contai', ' Bahirgram',
+       ' Khantora', ' Kalaria', ' English Bazar', ' Adra',
+       ' Ichhapur Defence Estate Civil Township', ' Barunda'], 
+       Karnataka:[' Bengaluru', ' Hubballi', ' Mangaluru', ' Belur Industrial Area',
+       ' Manvi', ' Yelahanka', ' Nargund', ' Kalaburagi', ' Kudchi',
+       ' Gauribidanur', ' Belagavi', ' Varamballi', ' Chamrajnagar',
+       ' Gangawati', ' Kolar', ' Indi', ' Gadag Betigeri', ' Puttur',
+       ' Mysuru', ' Bidar', ' Nanjangud', ' Dharwad', ' Ballari',
+       ' Kundgol', ' Bhadravati', ' Sulya', ' Adyar', ' Mandya',
+       ' Hassan', ' Homnabad', ' Karnataka', ' Dobaspet Industrial Area',
+       ' Ranebennur', ' Kunigal', ' Shahpur', ' Ramdurg',
+       ' Mellahalli Mysore District', ' Yadgir', ' Madihal', ' Raichur',
+       ' Kotturu', ' Pavagada', ' Koppal', ' Arsikere', ' Sirsi',
+       ' Davanagere', ' Ankola', ' Lingsugur', ' Saligram', ' Tumakuru',
+       ' Shivamogga', ' Munirabad Project Area', ' Hosapete', ' Hunsur',
+       ' Vijayapura', ' Mahalingpur', ' Mulbagal', ' Kundapura',
+       ' Bagalkot', ' Channarayapatna', ' Udupi', ' Channagiri',
+       ' Chintamani', ' Moodabidri', ' Chikkamagaluru', ' Muduperar',
+       ' Belur', ' Thumbe', ' Bhatkal', ' JSW Steel Plant Township',
+       ' Periyapatna', ' Haveri', ' Londa', ' Chitradurga', ' Jamkhandi',
+       ' Hosdurga', ' Mundgod', ' Kamatgi', ' Pandavapura',
+       ' Hole Narsipur', ' Pudu', ' Honavar', ' Haliyal', ' Sidlaghatta',
+       ' Bannur', ' Bail Hongal', ' Navalgund', ' Lakshmeshwar',
+       ' Basavana Bagevadi', ' Channapatna', ' Hiriyur', ' Aland',
+       ' Kushalanagara', ' Yellapur', ' Ramanagara', ' Robertsonpet'], 
+       Punjab:[' Kharar', ' Karoran', ' Goniana', ' Malaut', ' Jagraon',
+       ' Amritsar', ' Dinanagar', ' Batala', ' Maraar Kalan', ' Patran',
+       ' Nakodar', ' Pathankot', ' Mullanpur Dakha', ' Firozpur',
+       ' Jandiala Amritsar District', ' Banur', ' Rupnagar',
+       ' Dera Bassi', ' Bathinda', ' Bhankarpur', ' Abohar',
+       ' Sirhind Fatehgarh Sahib', ' Ludhiana', ' Bhucho Mandi',
+       ' Patiala', ' Phagwara', ' Mukerian', ' Zirakpur', ' Mohali',
+       ' Talwara', ' Sri Hargobindpur', ' Tarantaran', ' Jalandhar',
+       ' Anandpur Sahib', ' Gobindgarh', ' Kot Ise Khan', ' Lalru',
+       ' Maur', ' Kurali', ' Kotkapura', ' Doraha', ' Qadian',
+       ' Giddarbaha', ' Punjab', ' Dirba', ' Malerkotla', ' Rajpura',
+       ' Sangrur', ' Guru Har Sahai', ' Nabha', ' Jalalabad',
+       ' Talwandi Sabo', ' Ahmedgarh', ' Hoshiarpur', ' Muktsar',
+       ' Patti', ' Urmar Tanda', ' Zira', ' Raikot', ' Morinda',
+       ' Khanna', ' Mansa', ' Nawanshahr', ' Hariana', ' Gurdaspur',
+       ' Sunam', ' Sujanpur', ' Mandi Govindgarh', ' Nurmahal',
+       ' Bhadson', ' Khanauri', ' Ajnala', ' Dhuri', ' Garhshankar',
+       ' Bhagta Bhai Ka', ' Sham Chauras I', ' Samrala', ' Manwal',
+       ' Sardulgarh', ' Jaitu', ' Rurki Kasba', ' Fazilka', ' Kapurthala',
+       ' Beas', ' Bassi Pathana', ' Banga', ' Faridkot', ' Barnala',
+       ' Samana', ' Chogawan', ' Goraya', ' Makhu', ' Bareta',
+       ' Raja Sansi', ' Moga', ' Mudal', ' Dasuya', ' Phillaur',
+       ' Alawalpur', ' Rampura Phul', ' Dhanaula', ' Dhilwan',
+       ' Bhikhiwind'],
+       Uttaranchal:[' Khatima', ' Dehradun', ' Selaqui', ' SIDCUL Haridwar',
+       ' Uttaranchal', ' Sitarganj', ' Haridwar', ' Jaspur', ' Roorkee',
+       ' Rudrapur', ' Doiwala', ' Ramnagar', ' Haldwani',
+       ' Piran Kaliyar', ' Bhagwanpur', ' Laksar', ' Mussoorie',
+       ' Herbertpur', ' Bahadarabad', ' Kashipur', ' Rishikesh',
+       ' Fatehpur Range Civil Township', ' Kathgodam', ' Lalkuan',
+       ' Kirtinagar', ' Gadarpur', ' Jhabrera', ' Manglaur', ' Lansdowne',
+       ' Mahua Kheraganj', ' Kotdwara', ' Pithoragarh', ' Landhaura',
+       ' Ranikhet', ' Gopeshwar', ' Almora', ' Pauri', ' Barkot',
+       ' Chamba', ' Nainital', ' Gangolihat', ' Srinagar', ' Banbasa',
+       ' New Tehri', ' Gochar', ' Vikasnagar', ' Mahua Dabra Haripura',
+       ' Sara Industrial Estate', ' Natthuwa Wala', ' Tanakpur',
+       ' Uttarkashi', ' Mukteshwar', ' Corbett', ' Bhowali',
+       ' Kachnal Gosain', ' Dhanaulti', ' Nagla', ' Chamoli',
+       ' Karnaprayag', ' Bazpur', ' Tehri', ' Pratitnagar', ' Bageshwar',
+       ' SIDCUL Kotadwara'], 
+       Telangana:[' Hyderabad', ' Kodad', ' Karimnagar', ' Kondamallapalle',
+       ' Nizambad', ' Ramannapeta', ' Koratla', ' Warangal',
+       ' Sathupally', ' Secunderabad', ' Khammam', ' Jannaram',
+       ' Sircilla', ' Miryalaguda', ' Dornakal', ' Telangana', ' Chitkul',
+       ' Ghanpur Nizamabad District', ' Allipur', ' Mahbubnagar',
+       ' Asifabad', ' Pothreddipalle', ' Tandur', ' Pargi', ' Bodhan',
+       ' Nirmal', ' Kukatpally', ' Naspur', ' Yellareddy', ' Siddipet',
+       ' Palwancha', ' Huzur Nagar', ' Kothagudem', ' Metapally',
+       ' Sarapaka', ' Narayanpet', ' Kapra', ' Chinnachitakunta',
+       ' LB Nagar', ' Narayankhed', ' Jangaon', ' Vemulawada', ' Armur',
+       ' Gadwal', ' Ieeja', ' Bellampalle', ' Jagtial', ' Palakurthy',
+       ' Chennur', ' Medak', ' Nagarkurnool', ' Tallada',
+       ' Ghanpur Warangal District', ' Kisan Nagar Industrial Area',
+       ' Jammikunta', ' Wanaparthy', ' Gajwel', ' Achampet',
+       ' Bheema Cements Limited Ramapuram', ' Ichoda', ' Ramagundam',
+       ' Thorrur', ' Utnur', ' Kyathampalle', ' Mahabubabad',
+       ' Kalwakurthy'], Assam:[' Silchar', ' Guwahati', ' Assam', ' Tezpur',
+       ' Hindustan Paper Corporation Ltd Township Panchgram', ' Lala',
+       ' Bhomoraguri AIDC', ' Tinsukia', ' Lanka', ' Lido Town',
+       ' Lakhipur Cachar District', ' Sarupathar', ' Howli', ' Dibrugarh',
+       ' Gohpur', ' Niz Katigorah Pt III', ' Doboka', ' Dhemaji',
+       ' Rangia', ' Lakhipur Goalpara District', ' Niz Hajo',
+       ' Karimganj', ' Nagaon', ' Kalaigaon Town Part', ' Badarpur',
+       ' Titabor Town', ' Goalpara', ' Bongaigaon', ' BCPL Township',
+       ' Howraghat', ' Margherita', ' Haflong', ' Sibsagar',
+       ' Hailakandi', ' Bongaigaon RPCL Township', ' Golaghat',
+       ' Jonai Bazar', ' North Lakhimpur', ' Jamunamukh', ' Jorhat',
+       ' Dergaon', ' Barpeta', ' Diphu', ' Gossaigaon', ' Digaru Gaon',
+       ' Bilasipara', ' Biswanath Chariali', ' Abhayapuri', ' Nalbari',
+       ' Dhing', ' Udalguri', ' Moranhat', ' Rangapara', ' Kharijapikon',
+       ' Dhekiajuli', ' Mangaldoi', ' Narayanpur Nalbari District',
+       ' Sepon', ' Kharupatia', ' Pub Dhaniram Pather', ' Nahira',
+       ' Bihpuria', ' Mariani', ' Numaligarh Refinery Township', ' Bijni',
+       ' Golokganj', ' Nazira', ' Moran Town', ' Naharkatiya', ' Hojai',
+       ' Bhuragaon', ' Kokrajhar', ' Dhekorgorha', ' Sonari',
+       ' Chapakhowa Town', ' Chapar', ' Sapatgram', ' Marigaon',
+       ' Irongmara', ' Azara', ' Lumding', ' Belsor', ' Doom Dooma',
+       ' Kamalabaria NC', ' Majgaon', ' Duliajan',
+       ' New Bongaigaon Railway Colony', ' Makum Tinsukia District',
+       ' Digboi', ' North Guwahati', ' Barpathar', ' Badarpur Rly Town',
+       ' Kochpara', ' Changsari', ' Raha', ' Tangla', ' Basugaon',
+       ' Dhubri', ' Pathsala'], 
+       UttarPradesh:[' Lucknow', ' Noida', ' Ghaziabad', ' Muradnagar', ' Saharanpur',
+       ' Deoria', ' Behta Hazipur', ' Gajraula', ' Meerut', ' Rampur',
+       ' Kanth Shahjahanpur District', ' Kora Jahanabad', ' Saraon',
+       ' Titron', ' Shahjahanpur', ' Aligarh', ' Fatehganj Purvi',
+       ' Orai Jalaun District', ' Naugarh', ' Vrindavan', ' Moradabad',
+       ' Mohammadabad Ghazipur District', ' Gagalhedi Must', ' Jasra',
+       ' Daurala', ' Kanpur', ' Varanasi', ' Kailashpur', ' Gorakhpur',
+       ' Bidhuna', ' Bareilly', ' Greater Noida', ' Garauri', ' Mirzapur',
+       ' Bulandshahr', ' Maswasi', ' Sadatmasaura', ' Agra', ' Jansath',
+       ' Gola Gokarannath', ' Aonla', ' Barabanki', ' Jaunpur', ' Bhinga',
+       ' Sahanpur', ' Nivi', ' Chhutmalpur', ' Ahraura', ' Harraiya',
+       ' Baraut', ' Bhatpar Rani', ' Pilibhit', ' Bangarmau', ' Gangoh',
+       ' Allahabad', ' Katra Shahjahanpur District', ' Mahul Khas',
+       ' Jahangirpur', ' Mehdawal', ' Kathaura', ' Sambhal',
+       ' Muzaffarnagar', ' Ballia', ' Sitapur', ' Sarai Mir', ' Fatehpur',
+       ' Tanda Rampur District', ' Lakhimpur', ' Miranpur',
+       ' Nawabganj Bareilly District', ' Azmatgarh',
+       ' Leather Park Banthar', ' Firozabad', ' Patti', ' Unnao',
+       ' Faizabad', ' Haldaur', ' Hapur', ' Pakbara', ' Mariahu',
+       ' Baksar', ' Kushinagar', ' Amroha', ' Loni', ' Azamgarh',
+       ' Dadri', ' Baheri', ' Bijnor', ' Mathura', ' Kithaur', ' Sirathu',
+       ' Kunda', ' Uttar Pradesh', ' Patiyali', ' Nizamabad', ' Shahpur',
+       ' Singahi Bhiraura', ' Kasganj', ' Padrauna', ' Barhalganj',
+       ' Thiriya Nizamat Khan', ' Ghatampur', ' Rasra', ' Gonda',
+       ' Thakurdwara', ' Hathras', ' Suthana Barsola', ' Akbarpur',
+       ' Jhansi', ' Sakaldiha', ' Machhlishahr', ' Hargaon', ' Chakia',
+       ' Bhojpur Dharampur', ' Mohan', ' Bahraich', ' Pipraich',
+       ' Parasi', ' Musafirkhana', ' Umri Kalan', ' Handia', ' Shamli',
+       ' Purquazi', ' Budhana', ' Sherkot', ' Gola Bazar', ' Niwari',
+       ' Kursi Road Industrial Area', ' Belthara Road', ' Saiyad Raja',
+       ' Maunath Bhanjan', ' Pilkhuwa', ' Kurthi Jafarpur', ' Kotwali',
+       ' Bihka', ' Gursahaiganj', ' Richha', ' Chandauli', ' Modinagar',
+       ' Parikshitgarh', ' Khurja', ' Ghazipur',
+       ' Gosainganj Faizabad District', ' Sewalkhas',
+       ' Mahrajganj Azamgarh District', ' Bilsanda', ' Mainpuri',
+       ' Mughalsarai', ' Kemri', ' Khargupur', ' Shahganj', ' Rae Bareli',
+       ' Gabhana', ' Gaura Barhaj', ' Korwa', ' Ghorawal', ' Konch',
+       ' Sultanpur', ' Jangipur', ' Artauni', ' Etawah', ' Chhata',
+       ' Behat', ' Kannauj', ' Babugarh', ' Balrampur', ' Basti',
+       ' Hasanpur', ' Kakari', ' Faridnagar', ' Budaun', ' Shahabad',
+       ' Sewarhi', ' Ayodhya', ' Shikohabad', ' Khutar', ' Sikandra Rao'], 
+       Delhi:['Delhi']
+    }
+    var modelsByBike ={
+      Bajaj:['Pulsar', 'Avenger', 'CT 100', 'Platina', 'Others', 'Discover'],KTM:['390 Duke ABS', 'Others', 'RC', 'Duke 200'],Royal_Enfield:['Bullet', 'Continental GT', 'Classic', 'Thunderbird', 'Others'],Yamaha:['FZ', 'Others', 'FZS', 'Saluto', 'YZF R', 'SZ', 'Fazer', 'Crux',
+       'Vmax', 'SS 125', 'YBR'],Honda:['Others', 'CB', 'CBF Stunner', 'CD 110 Dream', 'CBR', 'Dream Yuga'],Hero:['Passion', 'Glamour', 'Splendor', 'Others', 'Karizma', 'CBZ',
+       'Deluxe', 'CD Deluxe', 'Super Splendor', 'CD Dawn', 'Ignitor',
+       'Hunk', 'Achiever', 'CD 100', 'Impulse', 'HX 250 R', 'Ambition',
+       'Dawn'],Other_Brands:['Others'],TVS:['Others', 'Apache RTR', 'Star City Plus', 'Heavy Duty Super XL',
+       'Star Sport', 'Phoenix'],Suzuki:['GS', 'Gixxer', 'Others', 'Slingshot', 'Hayate', 'GSX', 'Hayabusa',
+       'Bandit', 'Access', 'M800'],Hero_Honda:['CBZ', 'Passion', 'Splendor', 'Others', 'Glamour', 'Hunk',
+       'Super Splendor', 'CD Deluxe', 'CD 100', 'Achiever', 'Karizma',
+       'Ambition', 'Deluxe', 'Street', 'CD Dawn', 'Ignitor', 'Dawn']
 
+
+    }    
+  
+    function makeSubmenu(value) {
+    if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+    else {
+    var citiesOptions = "";
+    for(cityId in citiesByState[value]) {
+    citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+    }
+        document.getElementById("citySelect").innerHTML = citiesOptions;
+    }
+    }
+
+    
+</script>
+<script type="text/javascript">
+    function makeSubmenu1(value) 
+    {
+    if(value.length==0) document.getElementById("modelSelect").innerHTML = "<option></option>";
+    else {
+    var modelsOptions = "";
+    for(modelId in modelsByBike[value]) {
+    modelsOptions+="<option>"+modelsByBike[value][modelId]+"</option>";
+    }
+    document.getElementById("modelSelect").innerHTML = modelsOptions;
+    }
+    }
+
+    function resetSelection() 
+    {
+    document.getElementById("countrySelect").selectedIndex = 0;
+    document.getElementById("citySelect").selectedIndex = 0;
+    document.getElementById("bikeSelect").selectedIndex = 0;
+    document.getElementById("modelSelect").selectedIndex = 0;
+    document.getElementById("Kilo-Meter").selectedIndex = 0;
+    document.getElementById("year").selectedIndex = 0;
+
+
+    }
+    function displaySelected() 
+    { 
+      var country = document.getElementById("countrySelect").value;
+      var city = document.getElementById("citySelect").value;
+      var bike=document.getElementById("bikeSelect").value;
+      var model=document.getElementById("modelSelect").value;
+      var kilo=document.getElementById("Kilo-Meter").value;
+      var year=document.getElementById("year").selectedIndex.value;
+
+
+
+      alert(country+"\n"+city+"\n"+bike+"\n"+model+"\n"+kilo+"\n"+year);
+}
+</script>
+  <script type="text/javascript">
+  var citiesByState = {
+      AndhraPradesh:[' Visakhapatnam', ' Vizianagaram', ' Guntur', ' Phirangipuram',
+       ' Adoni', ' Nellore', ' Vijayawada', ' Gundugolanu', ' Chodavaram',
+       ' Nandyal', ' Gajapathinagaram', ' Kakinada', ' Gooty', ' Tanuku',
+       ' Bhimavaram', ' Dharmavaram', ' Chittoor', ' Kurnool',
+       ' Tirupati', ' Edlapadu', ' Kadapa', ' Pedana', ' Srikakulam',
+       ' Punganur', ' Narsipatnam', ' Thatipaka', ' Rayachoti',
+       ' Peddapuram', ' Andhra Pradesh', ' Mydukur', ' Proddatur',
+       ' Badvel', ' Tenali', ' Giddaluru', ' Chilakalurupet',
+       ' Amalapuram', ' Koikuntla', ' Anakapalle', ' Kankipadu',
+       ' Ramachandrapuram', ' Gudivada', ' Rushikonda APIIC',
+       ' Narasannapeta', ' Eluru', ' Anantapur', ' Rajahmundry',
+       ' Kuppam', ' Machilipatnam', ' Narasapur', ' Sanivarapupeta',
+       ' Kaikaram', ' Bobbili', ' Tadepalligudem', ' Anaparthy', ' Dhone',
+       ' Palacole', ' Nagireddipalle', ' Piduguralla', ' Macherla',
+       ' Bandarulanka', ' Tadpatri', ' Kavali', ' Hindupur',
+       ' Murakambattu', ' Madhurawada', ' Madanapalle', ' Singarayakonda',
+       ' Atmakur Sri Potti Sriramulu', ' Pithapuram', ' Jaggaiahpet',
+       ' Draksharamam', ' Peda Boddepalle', ' Guntakal', ' Yemmiganur',
+       ' Palasa Kasibugga', ' Vuyyuru', ' Ongole', ' Chirala',
+       ' Markapur', ' Podili', ' Pileru', ' Pedatadepalli',
+       ' Parvathipuram', ' Narasaraopet', ' Medarametla', ' Kanapaka',
+       ' Maruteru', ' Rajampet', ' Dowleswaram', ' Payakaraopeta',
+       ' Kandukur', ' Paravada Industrial Area', ' Kathipudi',
+       ' Prattipadu', ' Repalle', ' Vinukonda', ' Amadalavalasa',
+       ' Pulivendula', ' Yenugonda', ' Tuni', ' Kanigiri',
+       ' Mamidalapadu', ' Palamaner', ' Chipurupalle', ' Kadiri',
+       ' Somandepalle', ' Mangalagiri', ' Allur', ' Achanta'], 
+       Rajasthan:[' Jodhpur', ' Jaipur', ' Sikar', ' Udaipur', ' Bikaner', ' Kherli',
+       ' Nimbahera', ' Chittorgarh', ' Losal', ' Sheoganj', ' Kota',
+       ' Beawar', ' RIICO Industrial Area Khushkhera', ' Alwar', ' Nokha',
+       ' Churu', ' Sawai Madhopur', ' Dausa', ' Balotra', ' Pali',
+       ' Rajgarh', ' Bagru', ' Boranada Special Economic Zone',
+       ' Kuchaman City', ' Malpura', ' Kotputli', ' Rajasthan', ' Bundi',
+       ' Sirohi', ' Sanchore', ' Bhilwara',
+       ' RIICO Industrial Area Bassi', ' Sri Madhopur',
+       ' Jodhpur Stone Park Industrial Area', ' BITS Pilani Campus',
+       ' Hanumangarh', ' Gangapur City', ' Ajmer', ' Sri Ganganagar',
+       ' Bhiwadi', ' Mathania', ' Barmer', ' Samdari', ' Behror', ' Bhim',
+       ' Makrana', ' Sambhar', ' Sadulshahar', ' Chaksu', ' Manoharthana',
+       ' Bishangarh', ' Sarwar', ' Todaraisingh',
+       ' Kishangarh Ajmer District', ' Tonk', ' Chomun', ' Nawalgarh',
+       ' Rajsamand', ' Baran', ' Suratgarh', ' Khairthal',
+       ' Chhoti Sadri', ' Pilani Town', ' Bharatpur', ' Dhaulpur',
+       ' Hindaun', ' Chirawa', ' Bandikui', ' Nadbai', ' Churu District',
+       ' Nagaur', ' Ajeetgarh', ' Merta City', ' Jhunjhunun', ' Mangrol',
+       ' Lachhmangarh', ' Ladnu', ' Bissau', ' Kishangarh Alwar District',
+       ' Bhadra', ' Surajgarh', ' Rani Sagar RIICO', ' Rawatsar', ' Deeg',
+       ' Phulera', ' Danta', ' Mehandipur', ' Aligarh', ' Nawa',
+       ' Anupgarh', ' Ramganj Mandi', ' Raisinghnagar',
+       ' Sumerpur Industrial Area', ' Jaitaran', ' Didwana', ' Bhinmal',
+       ' Ranthambore', ' Jaisalmer', ' Abu Road',
+       ' RIICO Industrial Area Neemrana', ' Deoli', ' Kekri', ' Ahore',
+       ' Pratapgarh', ' Khatu', ' Udaipurwati', ' Chhabra', ' Bayana',
+       ' Sadri', ' Kuchera'], 
+       chandigarh:[' Chandigarh', ' Ludhiana', ' Karoran', ' Mohali', ' Panchkula',
+       ' Zirakpur', ' Chandi Mandir', ' Banur', ' Kharar', ' Dera Bassi',
+       ' Rajpura', ' Ambala', ' Sirhind Fatehgarh Sahib', ' Rupnagar',
+       ' Morinda', ' Naraingarh', ' Lalru', ' Haryana', ' Kurali'], 
+       Tamil_Nadu:[' Vellalur', ' Tuticorin', ' Chennai', ' Kuthalam',
+       ' Tiruchirappalli', ' Tamil Nadu', ' Thanjavur', ' Puduchatram',
+       ' Madurai', ' Gudiyatham', ' Tirupattur', ' Manamadurai',
+       ' Tirunelveli', ' Padirikuppam', ' Madukkur', ' Coimbatore',
+       ' Nagercoil', ' Periyamanali', ' Hosur', ' Erode', ' Tiruppur',
+       ' Vadipatti', ' Kayalpattinam', ' Krishnagiri', ' Neyveli',
+       ' Salem', ' Pudukkottai', ' Melpattampakkam', ' Thiruparankundram',
+       ' Manapparai', ' Anaiyur', ' Padappai', ' Virudhunagar',
+       ' Mayiladuthurai', ' Tenkasi', ' Cuddalore', ' Usilampatti',
+       ' Thiruvaiyaru', ' Vedaranyam', ' Kallakkurichi', ' Devadanapatti',
+       ' Sathankulam', ' Mohamed Bundur', ' Sivaganga', ' Thevaram',
+       ' Gummidipoondi', ' Sarcarsamakulam', ' Virudhachalam',
+       ' Rasipuram', ' Tiruvannamalai', ' Mulagumudu', ' Pacode',
+       ' Thiruvenkadam', ' Palangarai', ' Kovilpatti', ' Tambaram',
+       ' Vellore', ' Muttayyapuram', ' Sirumugai', ' Swamimalai',
+       ' Thiruporur', ' Tiruchendur', ' Devarshola', ' Nanjikottai',
+       ' Marthandam', ' Thisayanvilai', ' A Vellalapatti', ' Velur',
+       ' Palamedu', ' SIPCOT Perundurai', ' Melvisharam', ' Ambur',
+       ' Kariapatti', ' Thirumangalam', ' Tharangambadi', ' Ariyalur',
+       ' Chengalpattu', ' Paramakudi', ' Kumbakonam', ' Gangavalli',
+       ' Palladam', ' Athipatti', ' Ambasamudram', ' Ambattur', ' Ilanji',
+       ' Tiruchengode', ' Nandivaram-Guduvancheri', ' Orathanadu',
+       ' Karur', ' Palani', ' Thiruvarur', ' Kancheepuram',
+       ' Kulasekaram', ' Kolachal', ' Theni Allinagaram', ' Pollachi',
+       ' Kasipalayam', ' Ranipettai', ' Nagapattinam', ' Anthiyur',
+       ' Kuhalur', ' Perundurai', ' Malumichampatti', ' Sankarankoil',
+       ' Thathankuttai Nagapattinam District', ' Mettur', ' Ponneri',
+       ' Arcot', ' Gobichettipalayam', ' Sulur', ' Kakkalur', ' Dindigul',
+       ' Villupuram', ' Thottiyam', ' Ooty', ' Komarapalayam',
+       ' Balakrishnapuram', ' Thiruvallur', ' Madambakkam', ' Thuraiyur',
+       ' Vandavasi', ' Avadi', ' Dharapuram', ' Sirkali',
+       ' Maduranthakam'],
+       Jharkhand:[' Ranchi', ' Deoghar', ' Jamshedpur', ' Hazaribagh',
+       ' Jaridih Bazar', ' Bokaro Steel City', ' Kanke', ' Jharia Khas',
+       ' Giridih', ' Pakaur', ' Danguwapasi', ' Dhanbad', ' Mihijam',
+       ' Irba', ' Daltonganj', ' Bhuli', ' Palawa', ' Jasidih',
+       ' Latehar', ' Ramgarh Cantonment', ' Jamadoba', ' Lohardaga',
+       ' Ray', ' Sindri', ' Rajbhita', ' Jhumri Tilaiya', ' Telodih',
+       ' Jorapokhar', ' Chaibasa', ' Jharkhand', ' Nirsa', ' Phusro',
+       ' Domchanch', ' Borio', ' Barharwa', ' Basukinath', ' Churi',
+       ' Netarhat', ' Rehla', ' Gumla', ' Ratu', ' Barhi', ' Madhupur',
+       ' Baliari', ' Bermo', ' Sahibganj', ' Musabani', ' AEC Complex',
+       ' Charhi', ' Patratu', ' Bokaro Thermal Township', ' Isri',
+       ' Topchanchi', ' Bishnugarh', ' Ghatshila', ' Kodarma',
+       ' Gobindpur', ' Chatra', ' Ramgarh', ' Khunti', ' Saunda',
+       ' Godda', ' Dumka', ' Kuju', ' Lalpania', ' Baharagora', ' Garhwa',
+       ' Karma Tanr', ' Pathardih', ' Simdega', ' Chakulia',
+       ' Chakradharpur', ' Kailudih', ' Chauparan', ' Chirkunda',
+       ' Baua Kalan', ' Hussainabad', ' Gomoh', ' Okni No 2', ' Panchet',
+       ' Chandwa', ' Katras', ' Dhanwar', ' Jhinkpani', ' Mera',
+       ' Lakarka', ' Tenu', ' Deorikalan'], 
+       Maharashtra:[' Nashik', ' Mumbai', ' Sangli (-Miraj)', ' Shevgaon', ' Bhiwandi',
+       ' Latur', ' Sillod', ' Bhusawal', ' Satara', ' Wardha', ' Pune',
+       ' Thane', ' Navi Mumbai', ' Ichalkaranji', ' Malegaon', ' Ramtek',
+       ' Nagpur', ' Desaiganj', ' Chalisgaon', ' Majgaon', ' Sakoli',
+       ' Jamner', ' Chinchwad', ' Aurangabad', ' Amravati', ' Tumsar',
+       ' Hingoli', ' Boisar', ' Ulhasnagar', ' Nanded', ' Pandharpur',
+       ' Badlapur', ' Satana', ' Dadar', ' Akola', ' Karad', ' Kolhapur',
+       ' Maharashtra', ' Shendra MIDC', ' Pauni', ' Jawhar', ' Ratnagiri',
+       ' Hinganghat', ' Waluj MIDC', ' Ambajogai', ' Raigad District',
+       ' Nanded Waghala', ' Yavatmal', ' Wani', ' Guhagar', ' Shikrapur',
+       ' Ghoti', ' Bid', ' Indapur', ' Vada', ' Ahmadnagar', ' Faizpur',
+       ' Navghar-Manikpur', ' Manor', ' Naigaon', ' Udgir',
+       ' Roha Ashtami', ' Sonpeth', ' Dehu Cantt', ' Parbhani',
+       ' Vangani', ' Niphad', ' Tirora', ' Achalpur', ' Motala',
+       ' Jalgaon', ' Ellora', ' Khamgaon', ' Kagal', ' Rajgurunagar Khed',
+       ' Buldana', ' Waghoda', ' Dhule', ' Georai', ' Lonavala',
+       ' Phaltan', ' Loni Kalbhor', ' Kudal', ' Butibori', ' Akkalkuwa',
+       ' Murgud', ' Paithan', ' Shirur', ' Umri', ' Nandgaon', ' Morshi',
+       ' Gondiya', ' Kopargaon', ' Sangamner', ' Hudkeshwar',
+       ' Jaysingpur', ' Varangaon', ' Solapur', ' Bhandara', ' Navapur',
+       ' Bori Parbhani District', ' Manmad', ' Chandrapur',
+       ' Kadegaon MIDC', ' Ausa', ' Vita', ' Osmanabad'], Haryana:[' Panchkula', ' Ambala', ' Sonipat', ' Buria', ' Yamunanagar',
+       ' Kalanaur', ' Rewari', ' Mahendragarh', ' Karnal', ' Tohana',
+       ' Uklanamandi', ' Hisar', ' Faridabad', ' Gurgaon', ' Panipat',
+       ' Rohtak', ' Kalayat', ' Ganaur', ' Nissing', ' Bhiwani',
+       ' Gharaunda', ' Julana', ' Nagal Chaudhry', ' Farrukhnagar',
+       ' Haryana', ' Palwal', ' Charkhi Dadri', ' Ladwa', ' Bawal',
+       ' Naraingarh', ' Pinjore', ' Kurukshetra', ' Fatehabad',
+       ' Bahadurgarh', ' Sirsa', ' Jind', ' Hansi', ' Maham', ' Narnaul',
+       ' Sampla', ' Kalka', ' Gohana', ' Kharkhoda', ' Loharu',
+       ' Kaithal', ' Adampur', ' Kanina', ' Dharuhera', ' Jhajjar',
+       ' Rai Industrial Area', ' Chhachhrauli', ' Uchana', ' Pehowa',
+       ' Taoru', ' Siwani', ' Cheeka', ' Kundli Industrial Area',
+       ' Shahbad', ' Beri', ' Ratia', ' Kalanwali', ' Barara', ' Bhakali',
+       ' Safidon', ' Narnaund', ' Taraori', ' Panipat Refinery Township',
+       ' Binola Industrial Area', ' Ellenabad', ' Ismailabad', ' Barwala',
+       ' Ladrawan', ' Nuh', ' Sankhol', ' Pundri', ' Saha',
+       ' Chandi Mandir', ' Assandh', ' Ateli'], 
+       Kerala:[' Thiruvananthapuram', ' Wayanad', ' Kannur', ' Kottakal',
+       ' Taliparamba', ' Kochi', ' Manjeri', ' Punalur', ' Kozhikode',
+       ' Kottayam', ' Kothamangalam', ' Pantheeramkavu', ' Malappuram',
+       ' Chendamangalam', ' Kasaragod', ' Koratty', ' Panniyannur',
+       ' Paravur', ' Nannambra', ' Oachira', ' Ettumanoor', ' Vengola',
+       ' Pathanamthitta', ' Aluva', ' Guruvayur', ' Cheleri', ' Nilambur',
+       ' Kallelibhagom', ' Ottappalam', ' Mannarkad I', ' Palakkad',
+       ' Elampalloor', ' Kanhangad', ' Thrissur', ' Kumarakom',
+       ' Angamaly', ' Thodupuzha', ' Muvattupuzha', ' Peringathur',
+       ' Iringaprom', ' Villiappally', ' Vadakkekara', ' Erattupetta',
+       ' Pallikkal', ' Changanacheri', ' Venginissery', ' Attingal',
+       ' Vazhayur', ' Pottore', ' Irinjalakuda', ' Varappuzha', ' Kollam',
+       ' Neyyattinkara', ' Kayamkulam', ' Kalpetta', ' Mattannur',
+       ' Karunagappally', ' Kunnamkulam', ' Iriveri', ' Kodungallur',
+       ' Iringal', ' Kolazhy', ' Puthuppally', ' Cherthala',
+       ' Kunnathunad', ' Idukki Township', ' Parappur', ' Mayyanad',
+       ' Thrikkaruva', ' Perumbavoor', ' Elayavoor', ' Edathiruthy',
+       ' Avittathur', ' Kizhuparamba', ' Chalakudy', ' Alappuzha',
+       ' Munnar', ' Kondotty', ' Vylathur', ' Ayancheri',
+       ' Mulamthuruthy', ' Vadama', ' Alathur', ' Puthukkad',
+       ' Parasuvaikkal', ' Kodur', ' Manantheri', ' Nenmenikkara',
+       ' Alamcode Thiruvananthapuram District', ' Uppala', ' Panachikkad',
+       ' Vaikom', ' Choondal', ' Nedumangad', ' Mavelikkara',
+       ' Venkitangu', ' Chengamanad', ' Kadungalloor', ' Perole',
+       ' Vaniyamkulam II', ' Talakkad', ' Kulathummal', ' Kadamakkudy',
+       ' Vadakkekad', ' Palai', ' Paravoor', ' Dharmadom',
+       ' Cheruthazham', ' Varkala', ' Veluthur', ' Azhikode', ' Edappal',
+       ' Perinthalmanna', ' Vilappil', ' Marancheri', ' Vengara',
+       ' Manakunnam', ' Kuttippuram', ' Alur', ' Shoranur',
+       ' Kozhenchery', ' Panayam', ' Choornikkara', ' Payyannur',
+       ' Thiruvalla', ' Thrikkadavoor', ' Anthicad', ' Karikkad',
+       ' Kuruvattur', ' Poomangalam', ' Edavilangu', ' Meenad',
+       ' Olavanna', ' Eramalloor', ' South Thrikkaripur', ' Beypore',
+       ' Mavoor', ' Kalady Ernakulam District', ' Pavaratty',
+       ' Thalassery', ' Tirur', ' Kattappana', ' Kadikkad', ' Chowwara',
+       ' Kudlu'],
+        MadhyaPradesh:[' Jabalpur', ' Ujjain', ' Shujalpur', ' Bhopal',
+       ' Makronia Buzurg', ' Indore', ' Chhindwara', ' Shahdol', ' Rewa',
+       ' Guna', ' Mhow', ' Pasan', ' Betul', ' Morena', ' Karera',
+       ' Vindhya Nagar NTPC Township', ' Datia', ' Bamhani', ' Bhind',
+       ' Itarsi', ' Gwalior', ' Sihora', ' Sarni', ' Ratlam',
+       ' Katangi Balaghat District', ' Vidisha', ' Neemuch', ' Mehgaon',
+       ' Kasrawad', ' Burhanpur', ' Seoni', ' Singrauli', ' Panna',
+       ' Shahpur Sagar District', ' Harda', ' Bhanpura', ' Sonkatch',
+       ' Shivpuri', ' Madhya Pradesh', ' Ashoknagar', ' Anjad', ' Namli',
+       ' Dewas', ' Rajgarh Rajgarh District', ' Alot', ' Nagda',
+       ' Maneri Industrial Growth Centre', ' Pithampur', ' Basoda',
+       ' Niwari', ' Dhodaramohar Alias Bhoura', ' Burhar', ' Malajkhand',
+       ' Garra', ' Manasa', ' Sohagpur', ' Waraseoni', ' Satna',
+       ' Sanwer', ' Pipariya', ' Mandsaur', ' Kareli', ' Mandla',
+       ' Multai', ' Tikamgarh', ' Gadarwara', ' Hoshangabad', ' Sidhi',
+       ' Sanchi', ' Depalpur', ' Sheopur', ' Dabra', ' Malhargarh',
+       ' Khandwa', ' Pandhana', ' Raisen', ' Khargone', ' Gohad',
+       ' Sagar', ' Murwara Katni', ' Berasia', ' Porsa', ' Shajapur',
+       ' Narsimhapur', ' Chandameta Butaria', ' Dhamnod Dhar District',
+       ' Seoni Malwa', ' Ghoda Dongri Ryt', ' Mangalya', ' Seondha',
+       ' Tarana', ' Chhota Chhindwara', ' Pithampur Industrial Hub',
+       ' Jaora', ' Raymond Chhindwara', ' Alirajpur', ' Mandideep',
+       ' Rau', ' Ashta', ' Joura', ' Sehore', ' Sendhwa', ' Jobat',
+       ' Bina-Etawa', ' Semaria', ' Aron', ' Mungaoli', ' Nowgong',
+       ' Badnagar', ' Barghat', ' Balaghat', ' Banda'],
+       Odisha:[' Baleshwar', ' Sambalpur', ' Berhmapur', ' Godiputamatiapara',
+       ' Choudwar', ' Bhubaneshwar', ' Dhamanagar', ' Cuttack',
+       ' Sundargarh', ' Nagaon', ' Rambha', ' Rourkela', ' Junagarh',
+       ' Bargarh', ' Kantabanji', ' Gourdanda', ' G Udayagiri',
+       ' Lanjigarh', ' Anugul', ' Kamakshyanagar', ' Parlakhemundi',
+       ' Odisha', ' Puri', ' Bhadrak', ' Kendujhar', ' Karanjia',
+       ' Patrapur', ' Baripada', ' Joda', ' Dhenkanal', ' Lathikata',
+       ' Kalinga Nagar Industrial Area', ' Jhumpura', ' Balakati',
+       ' Kansbahal', ' Phulabani', ' Kesinga', ' Ranapurgada',
+       ' Malkangiri', ' OCL Industrial Township', ' Udala', ' Byasanagar',
+       ' Jharsuguda', ' Balugaon', ' Banki', ' Chhatrapur', ' Hirakud',
+       ' Khariar', ' Belpahar', ' Chandili', ' Golabandha', ' Remuna',
+       ' Jajapur', ' Kendrapara', ' Barapali', ' Brajarajnagar',
+       ' Badamba', ' Kochinda', ' Daringbadi', ' Chikiti', ' Papadahandi',
+       ' Burla', ' Pipili', ' Barbil', ' Jeypur', ' Buguda', ' Itamati',
+       ' Pattamundai', ' Kanheipur', ' Anjira', ' Jatani', ' Boudh',
+       ' Jaleswar', ' Charibatia', ' Balangir', ' Rajasunakhala',
+       ' Vedanta Jharsuguda', ' Khaliapali',
+       ' Talcher Thermal Power Station Township', ' Nayagarh',
+       ' Anandapur', ' Bhanjanagar', ' Brahmabarada', ' Sonapur',
+       ' Nuapatna', ' Bhuban', ' Nimapada', ' Banapur', ' Bhawanipatna',
+       ' Padmapur', ' Soro', ' JSPL Town Anugul Township',
+       ' Badmal Township', ' Jagatsinghapur', ' Krushnanandapur',
+       ' Majhihara', ' Nabarangapur', ' Bijepur', ' Asika', ' Titlagarh',
+       ' Talcher', ' Sohela', ' Polasara', ' Patnagarh', ' Tusura',
+       ' Dera Colliery Township', ' Tangi',
+       ' Bhushan Steel Plant Meramandali Township', ' Ganjam'],
+        Bihar:[' Barbigha', ' Bihar', ' Harnaut', ' Rajgir', ' Warisaliganj',
+       ' Silao', ' Patna', ' Mahnar Bazar', ' Fatwah', ' Nawada',
+       ' Sheikhpura', ' Barh', ' Mokameh', ' Ekangar Sarai', ' Hilsa',
+       ' Islampur', ' Hisua', ' Samastipur', ' NTPC Barh Township',
+       ' Masaurhi', ' Bakhtiarpur', ' Mohiuddinagar', ' Gaya'], 
+       Gujarat:[' Surat', ' Limbdi', ' Amreli', ' Vapi', ' Bharuch', ' Ahmedabad',
+       ' Navsari', ' Pardi', ' Vadodara', ' Rajkot', ' Dharampur',
+       ' Saputara', ' Dohad', ' Junagadh', ' Nadiad', ' Jamnagar',
+       ' Patdi', ' Petlad', ' Anand', ' Dhrangadhra', ' Vyara',
+       ' Bhavnagar', ' Padra', ' Anklesvar', ' Bhuj', ' Bardoli',
+       ' Palej', ' Tarsadi', ' Mahuva', ' Tharad', ' Dahej SIR',
+       ' Virpur Rajkot District', ' Gandhidham', ' Chalala',
+       ' Mandvi Kachchh District', ' Viramgam', ' Gandhinagar',
+       ' Bhachau', ' Surendranagar', ' Patan', ' Sihor', ' Unjha',
+       ' Valsad', ' Halol', ' Vijapur', ' Mundra', ' Mahesana', ' Jasdan',
+       ' Wankaner', ' Botad', ' Sutrapada', ' Chanod', ' Khambhalia',
+       ' Kharach', ' Kheralu', ' Palanpur', ' Gondal', ' Godhra',
+       ' Chanasma', ' Ambaliyasan', ' Umrala', ' Kakoshi', ' Halvad',
+       ' Karjan', ' Chorwad', ' Upleta', ' Songadh Tapi District',
+       ' Bechar Alias Becharaji', ' Keshod', ' Khambhat', ' Jambusar',
+       ' Baben', ' Porbandar', ' Dwarka', ' Una', ' Sarigam', ' Somnath',
+       ' Rajula', ' Balasinor', ' Veraval', ' Paddhari', ' Kalol',
+       ' Savarkundla', ' Gujarat', ' Jamjodhpur', ' Lunawada', ' Bhanvad',
+       ' Harij', ' Songadh Bhavnagar District', ' Sojitra', ' Bilimora',
+       ' Mangrol', ' Disa', ' Jamavala'],
+        West_Bengal:[' West Bengal', ' Ranaghat', ' Kolkata', ' Rajpur Sonarpur',
+       ' Gangarampur', ' Balichak', ' Jaynagar Mazilpur', ' Bidhannagar',
+       ' Raiganj', ' Kharagpur', ' Garh Kamalpur', ' Mathabhanga',
+       ' Medinipur', ' Hingalganj', ' Hooghly', ' Memari', ' Siliguri',
+       ' Milki', ' Ilambazar', ' Chaltia', ' Howrah',
+       ' Chandpur North Twenty Four Parganas District', ' Krishnanagar',
+       ' Durgapur', ' Deulia', ' Uttar Bagdogra', ' Kalimpong',
+       ' Chandannagar M.C.', ' Bally', ' Kalyani', ' Bardhaman',
+       ' Haringhata Farm', ' Chakdah', ' Suri', ' Bhangar Raghunathpur',
+       ' Baktarnagar', ' Malda', ' Koch Bihar', ' New Town', ' Deara',
+       ' Darjeeling', ' Serampore', ' Jiaganj Azimganj', ' Koyra',
+       ' Malbazar', ' Sainthia', ' Hijuli', ' Labhpur', ' Sobhaganj',
+       ' Jalpaiguri', ' Aiho', ' Parasia', ' Dalkhola', ' Asansol MC',
+       ' Alipurduar Rly Jnc', ' Behrampore', ' Lataguri',
+       ' Jagadanandapur', ' Alipurduar', ' Dhulasimla', ' Kotulpur',
+       ' Beldanga', ' Kodalia', ' Uttar Pirpur',
+       ' Raghunathpur Hugli District', ' Habra', ' Puruliya',
+       ' Shimulpur', ' Dhanyakuria', ' Bolpur', ' Haldia',
+       ' Banarhat Tea Garden', ' Mira', ' Anup Nagar', ' Rampurhat',
+       ' Raniganj', ' Bagula', ' Durllabhganj', ' Bankra', ' Kakdihi',
+       ' Nagdaha', ' Rangabhita', ' Chanddandaha', ' Jaygaon',
+       ' Samudragarh', ' Bansberia', ' Naridana', ' Sonamukhi',
+       ' Guskara', ' Kurseong', ' Chamrail',
+       ' Bakreshwar Thermal Power Township', ' Madhyamgram', ' Matla',
+       ' Mirik', ' Tamluk', ' Ukhra', ' Harharia Chak', ' Podara',
+       ' Kandi', ' Champdani', ' Murshidabad', ' Contai', ' Bahirgram',
+       ' Khantora', ' Kalaria', ' English Bazar', ' Adra',
+       ' Ichhapur Defence Estate Civil Township', ' Barunda'], 
+       Karnataka:[' Bengaluru', ' Hubballi', ' Mangaluru', ' Belur Industrial Area',
+       ' Manvi', ' Yelahanka', ' Nargund', ' Kalaburagi', ' Kudchi',
+       ' Gauribidanur', ' Belagavi', ' Varamballi', ' Chamrajnagar',
+       ' Gangawati', ' Kolar', ' Indi', ' Gadag Betigeri', ' Puttur',
+       ' Mysuru', ' Bidar', ' Nanjangud', ' Dharwad', ' Ballari',
+       ' Kundgol', ' Bhadravati', ' Sulya', ' Adyar', ' Mandya',
+       ' Hassan', ' Homnabad', ' Karnataka', ' Dobaspet Industrial Area',
+       ' Ranebennur', ' Kunigal', ' Shahpur', ' Ramdurg',
+       ' Mellahalli Mysore District', ' Yadgir', ' Madihal', ' Raichur',
+       ' Kotturu', ' Pavagada', ' Koppal', ' Arsikere', ' Sirsi',
+       ' Davanagere', ' Ankola', ' Lingsugur', ' Saligram', ' Tumakuru',
+       ' Shivamogga', ' Munirabad Project Area', ' Hosapete', ' Hunsur',
+       ' Vijayapura', ' Mahalingpur', ' Mulbagal', ' Kundapura',
+       ' Bagalkot', ' Channarayapatna', ' Udupi', ' Channagiri',
+       ' Chintamani', ' Moodabidri', ' Chikkamagaluru', ' Muduperar',
+       ' Belur', ' Thumbe', ' Bhatkal', ' JSW Steel Plant Township',
+       ' Periyapatna', ' Haveri', ' Londa', ' Chitradurga', ' Jamkhandi',
+       ' Hosdurga', ' Mundgod', ' Kamatgi', ' Pandavapura',
+       ' Hole Narsipur', ' Pudu', ' Honavar', ' Haliyal', ' Sidlaghatta',
+       ' Bannur', ' Bail Hongal', ' Navalgund', ' Lakshmeshwar',
+       ' Basavana Bagevadi', ' Channapatna', ' Hiriyur', ' Aland',
+       ' Kushalanagara', ' Yellapur', ' Ramanagara', ' Robertsonpet'], 
+       Punjab:[' Kharar', ' Karoran', ' Goniana', ' Malaut', ' Jagraon',
+       ' Amritsar', ' Dinanagar', ' Batala', ' Maraar Kalan', ' Patran',
+       ' Nakodar', ' Pathankot', ' Mullanpur Dakha', ' Firozpur',
+       ' Jandiala Amritsar District', ' Banur', ' Rupnagar',
+       ' Dera Bassi', ' Bathinda', ' Bhankarpur', ' Abohar',
+       ' Sirhind Fatehgarh Sahib', ' Ludhiana', ' Bhucho Mandi',
+       ' Patiala', ' Phagwara', ' Mukerian', ' Zirakpur', ' Mohali',
+       ' Talwara', ' Sri Hargobindpur', ' Tarantaran', ' Jalandhar',
+       ' Anandpur Sahib', ' Gobindgarh', ' Kot Ise Khan', ' Lalru',
+       ' Maur', ' Kurali', ' Kotkapura', ' Doraha', ' Qadian',
+       ' Giddarbaha', ' Punjab', ' Dirba', ' Malerkotla', ' Rajpura',
+       ' Sangrur', ' Guru Har Sahai', ' Nabha', ' Jalalabad',
+       ' Talwandi Sabo', ' Ahmedgarh', ' Hoshiarpur', ' Muktsar',
+       ' Patti', ' Urmar Tanda', ' Zira', ' Raikot', ' Morinda',
+       ' Khanna', ' Mansa', ' Nawanshahr', ' Hariana', ' Gurdaspur',
+       ' Sunam', ' Sujanpur', ' Mandi Govindgarh', ' Nurmahal',
+       ' Bhadson', ' Khanauri', ' Ajnala', ' Dhuri', ' Garhshankar',
+       ' Bhagta Bhai Ka', ' Sham Chauras I', ' Samrala', ' Manwal',
+       ' Sardulgarh', ' Jaitu', ' Rurki Kasba', ' Fazilka', ' Kapurthala',
+       ' Beas', ' Bassi Pathana', ' Banga', ' Faridkot', ' Barnala',
+       ' Samana', ' Chogawan', ' Goraya', ' Makhu', ' Bareta',
+       ' Raja Sansi', ' Moga', ' Mudal', ' Dasuya', ' Phillaur',
+       ' Alawalpur', ' Rampura Phul', ' Dhanaula', ' Dhilwan',
+       ' Bhikhiwind'],
+       Uttaranchal:[' Khatima', ' Dehradun', ' Selaqui', ' SIDCUL Haridwar',
+       ' Uttaranchal', ' Sitarganj', ' Haridwar', ' Jaspur', ' Roorkee',
+       ' Rudrapur', ' Doiwala', ' Ramnagar', ' Haldwani',
+       ' Piran Kaliyar', ' Bhagwanpur', ' Laksar', ' Mussoorie',
+       ' Herbertpur', ' Bahadarabad', ' Kashipur', ' Rishikesh',
+       ' Fatehpur Range Civil Township', ' Kathgodam', ' Lalkuan',
+       ' Kirtinagar', ' Gadarpur', ' Jhabrera', ' Manglaur', ' Lansdowne',
+       ' Mahua Kheraganj', ' Kotdwara', ' Pithoragarh', ' Landhaura',
+       ' Ranikhet', ' Gopeshwar', ' Almora', ' Pauri', ' Barkot',
+       ' Chamba', ' Nainital', ' Gangolihat', ' Srinagar', ' Banbasa',
+       ' New Tehri', ' Gochar', ' Vikasnagar', ' Mahua Dabra Haripura',
+       ' Sara Industrial Estate', ' Natthuwa Wala', ' Tanakpur',
+       ' Uttarkashi', ' Mukteshwar', ' Corbett', ' Bhowali',
+       ' Kachnal Gosain', ' Dhanaulti', ' Nagla', ' Chamoli',
+       ' Karnaprayag', ' Bazpur', ' Tehri', ' Pratitnagar', ' Bageshwar',
+       ' SIDCUL Kotadwara'], 
+       Telangana:[' Hyderabad', ' Kodad', ' Karimnagar', ' Kondamallapalle',
+       ' Nizambad', ' Ramannapeta', ' Koratla', ' Warangal',
+       ' Sathupally', ' Secunderabad', ' Khammam', ' Jannaram',
+       ' Sircilla', ' Miryalaguda', ' Dornakal', ' Telangana', ' Chitkul',
+       ' Ghanpur Nizamabad District', ' Allipur', ' Mahbubnagar',
+       ' Asifabad', ' Pothreddipalle', ' Tandur', ' Pargi', ' Bodhan',
+       ' Nirmal', ' Kukatpally', ' Naspur', ' Yellareddy', ' Siddipet',
+       ' Palwancha', ' Huzur Nagar', ' Kothagudem', ' Metapally',
+       ' Sarapaka', ' Narayanpet', ' Kapra', ' Chinnachitakunta',
+       ' LB Nagar', ' Narayankhed', ' Jangaon', ' Vemulawada', ' Armur',
+       ' Gadwal', ' Ieeja', ' Bellampalle', ' Jagtial', ' Palakurthy',
+       ' Chennur', ' Medak', ' Nagarkurnool', ' Tallada',
+       ' Ghanpur Warangal District', ' Kisan Nagar Industrial Area',
+       ' Jammikunta', ' Wanaparthy', ' Gajwel', ' Achampet',
+       ' Bheema Cements Limited Ramapuram', ' Ichoda', ' Ramagundam',
+       ' Thorrur', ' Utnur', ' Kyathampalle', ' Mahabubabad',
+       ' Kalwakurthy'], Assam:[' Silchar', ' Guwahati', ' Assam', ' Tezpur',
+       ' Hindustan Paper Corporation Ltd Township Panchgram', ' Lala',
+       ' Bhomoraguri AIDC', ' Tinsukia', ' Lanka', ' Lido Town',
+       ' Lakhipur Cachar District', ' Sarupathar', ' Howli', ' Dibrugarh',
+       ' Gohpur', ' Niz Katigorah Pt III', ' Doboka', ' Dhemaji',
+       ' Rangia', ' Lakhipur Goalpara District', ' Niz Hajo',
+       ' Karimganj', ' Nagaon', ' Kalaigaon Town Part', ' Badarpur',
+       ' Titabor Town', ' Goalpara', ' Bongaigaon', ' BCPL Township',
+       ' Howraghat', ' Margherita', ' Haflong', ' Sibsagar',
+       ' Hailakandi', ' Bongaigaon RPCL Township', ' Golaghat',
+       ' Jonai Bazar', ' North Lakhimpur', ' Jamunamukh', ' Jorhat',
+       ' Dergaon', ' Barpeta', ' Diphu', ' Gossaigaon', ' Digaru Gaon',
+       ' Bilasipara', ' Biswanath Chariali', ' Abhayapuri', ' Nalbari',
+       ' Dhing', ' Udalguri', ' Moranhat', ' Rangapara', ' Kharijapikon',
+       ' Dhekiajuli', ' Mangaldoi', ' Narayanpur Nalbari District',
+       ' Sepon', ' Kharupatia', ' Pub Dhaniram Pather', ' Nahira',
+       ' Bihpuria', ' Mariani', ' Numaligarh Refinery Township', ' Bijni',
+       ' Golokganj', ' Nazira', ' Moran Town', ' Naharkatiya', ' Hojai',
+       ' Bhuragaon', ' Kokrajhar', ' Dhekorgorha', ' Sonari',
+       ' Chapakhowa Town', ' Chapar', ' Sapatgram', ' Marigaon',
+       ' Irongmara', ' Azara', ' Lumding', ' Belsor', ' Doom Dooma',
+       ' Kamalabaria NC', ' Majgaon', ' Duliajan',
+       ' New Bongaigaon Railway Colony', ' Makum Tinsukia District',
+       ' Digboi', ' North Guwahati', ' Barpathar', ' Badarpur Rly Town',
+       ' Kochpara', ' Changsari', ' Raha', ' Tangla', ' Basugaon',
+       ' Dhubri', ' Pathsala'], 
+       UttarPradesh:[' Lucknow', ' Noida', ' Ghaziabad', ' Muradnagar', ' Saharanpur',
+       ' Deoria', ' Behta Hazipur', ' Gajraula', ' Meerut', ' Rampur',
+       ' Kanth Shahjahanpur District', ' Kora Jahanabad', ' Saraon',
+       ' Titron', ' Shahjahanpur', ' Aligarh', ' Fatehganj Purvi',
+       ' Orai Jalaun District', ' Naugarh', ' Vrindavan', ' Moradabad',
+       ' Mohammadabad Ghazipur District', ' Gagalhedi Must', ' Jasra',
+       ' Daurala', ' Kanpur', ' Varanasi', ' Kailashpur', ' Gorakhpur',
+       ' Bidhuna', ' Bareilly', ' Greater Noida', ' Garauri', ' Mirzapur',
+       ' Bulandshahr', ' Maswasi', ' Sadatmasaura', ' Agra', ' Jansath',
+       ' Gola Gokarannath', ' Aonla', ' Barabanki', ' Jaunpur', ' Bhinga',
+       ' Sahanpur', ' Nivi', ' Chhutmalpur', ' Ahraura', ' Harraiya',
+       ' Baraut', ' Bhatpar Rani', ' Pilibhit', ' Bangarmau', ' Gangoh',
+       ' Allahabad', ' Katra Shahjahanpur District', ' Mahul Khas',
+       ' Jahangirpur', ' Mehdawal', ' Kathaura', ' Sambhal',
+       ' Muzaffarnagar', ' Ballia', ' Sitapur', ' Sarai Mir', ' Fatehpur',
+       ' Tanda Rampur District', ' Lakhimpur', ' Miranpur',
+       ' Nawabganj Bareilly District', ' Azmatgarh',
+       ' Leather Park Banthar', ' Firozabad', ' Patti', ' Unnao',
+       ' Faizabad', ' Haldaur', ' Hapur', ' Pakbara', ' Mariahu',
+       ' Baksar', ' Kushinagar', ' Amroha', ' Loni', ' Azamgarh',
+       ' Dadri', ' Baheri', ' Bijnor', ' Mathura', ' Kithaur', ' Sirathu',
+       ' Kunda', ' Uttar Pradesh', ' Patiyali', ' Nizamabad', ' Shahpur',
+       ' Singahi Bhiraura', ' Kasganj', ' Padrauna', ' Barhalganj',
+       ' Thiriya Nizamat Khan', ' Ghatampur', ' Rasra', ' Gonda',
+       ' Thakurdwara', ' Hathras', ' Suthana Barsola', ' Akbarpur',
+       ' Jhansi', ' Sakaldiha', ' Machhlishahr', ' Hargaon', ' Chakia',
+       ' Bhojpur Dharampur', ' Mohan', ' Bahraich', ' Pipraich',
+       ' Parasi', ' Musafirkhana', ' Umri Kalan', ' Handia', ' Shamli',
+       ' Purquazi', ' Budhana', ' Sherkot', ' Gola Bazar', ' Niwari',
+       ' Kursi Road Industrial Area', ' Belthara Road', ' Saiyad Raja',
+       ' Maunath Bhanjan', ' Pilkhuwa', ' Kurthi Jafarpur', ' Kotwali',
+       ' Bihka', ' Gursahaiganj', ' Richha', ' Chandauli', ' Modinagar',
+       ' Parikshitgarh', ' Khurja', ' Ghazipur',
+       ' Gosainganj Faizabad District', ' Sewalkhas',
+       ' Mahrajganj Azamgarh District', ' Bilsanda', ' Mainpuri',
+       ' Mughalsarai', ' Kemri', ' Khargupur', ' Shahganj', ' Rae Bareli',
+       ' Gabhana', ' Gaura Barhaj', ' Korwa', ' Ghorawal', ' Konch',
+       ' Sultanpur', ' Jangipur', ' Artauni', ' Etawah', ' Chhata',
+       ' Behat', ' Kannauj', ' Babugarh', ' Balrampur', ' Basti',
+       ' Hasanpur', ' Kakari', ' Faridnagar', ' Budaun', ' Shahabad',
+       ' Sewarhi', ' Ayodhya', ' Shikohabad', ' Khutar', ' Sikandra Rao'], 
+       Delhi:['Delhi']
+    }
+    var modelsByBike ={
+      Bajaj:['Pulsar', 'Avenger', 'CT 100', 'Platina', 'Others', 'Discover'],KTM:['390 Duke ABS', 'Others', 'RC', 'Duke 200'],Royal_Enfield:['Bullet', 'Continental GT', 'Classic', 'Thunderbird', 'Others'],Yamaha:['FZ', 'Others', 'FZS', 'Saluto', 'YZF R', 'SZ', 'Fazer', 'Crux',
+       'Vmax', 'SS 125', 'YBR'],Honda:['Others', 'CB', 'CBF Stunner', 'CD 110 Dream', 'CBR', 'Dream Yuga'],Hero:['Passion', 'Glamour', 'Splendor', 'Others', 'Karizma', 'CBZ',
+       'Deluxe', 'CD Deluxe', 'Super Splendor', 'CD Dawn', 'Ignitor',
+       'Hunk', 'Achiever', 'CD 100', 'Impulse', 'HX 250 R', 'Ambition',
+       'Dawn'],Other_Brands:['Others'],TVS:['Others', 'Apache RTR', 'Star City Plus', 'Heavy Duty Super XL',
+       'Star Sport', 'Phoenix'],Suzuki:['GS', 'Gixxer', 'Others', 'Slingshot', 'Hayate', 'GSX', 'Hayabusa',
+       'Bandit', 'Access', 'M800'],Hero_Honda:['CBZ', 'Passion', 'Splendor', 'Others', 'Glamour', 'Hunk',
+       'Super Splendor', 'CD Deluxe', 'CD 100', 'Achiever', 'Karizma',
+       'Ambition', 'Deluxe', 'Street', 'CD Dawn', 'Ignitor', 'Dawn']
+
+
+    }    
+  
+    function makeSubmenu(value) {
+    if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
+    else {
+    var citiesOptions = "";
+    for(cityId in citiesByState[value]) {
+    citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
+    }
+        document.getElementById("citySelect").innerHTML = citiesOptions;
+    }
+    }
+
+    
+</script>
+<script type="text/javascript">
+    function makeSubmenu1(value) 
+    {
+    if(value.length==0) document.getElementById("modelSelect").innerHTML = "<option></option>";
+    else {
+    var modelsOptions = "";
+    for(modelId in modelsByBike[value]) {
+    modelsOptions+="<option>"+modelsByBike[value][modelId]+"</option>";
+    }
+    document.getElementById("modelSelect").innerHTML = modelsOptions;
+    }
+    }
+
+    function resetSelection() 
+    {
+    document.getElementById("countrySelect").selectedIndex = 0;
+    document.getElementById("citySelect").selectedIndex = 0;
+    document.getElementById("bikeSelect").selectedIndex = 0;
+    document.getElementById("modelSelect").selectedIndex = 0;
+    document.getElementById("Kilo-Meter").selectedIndex = 0;
+    document.getElementById("year").selectedIndex = 0;
+
+
+    }
+    function displaySelected() 
+    { 
+      var country = document.getElementById("countrySelect").value;
+      var city = document.getElementById("citySelect").value;
+      var bike=document.getElementById("bikeSelect").value;
+      var model=document.getElementById("modelSelect").value;
+      var kilo=document.getElementById("Kilo-Meter").value;
+      var year=document.getElementById("year").selectedIndex.value;
+
+
+
+      alert(country+"\n"+city+"\n"+bike+"\n"+model+"\n"+kilo+"\n"+year);
+}
+</script>
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --surface: rgba(255, 255, 255, 0.92);
-      --surface-solid: #ffffff;
-      --text: #172033;
-      --muted: #697386;
-      --border: #e4e8f0;
-      --primary: #4f46e5;
-      --primary-dark: #3730a3;
-      --accent: #eef2ff;
-      --success-bg: #ecfdf5;
-      --success-border: #a7f3d0;
-      --success-text: #065f46;
-      --shadow: 0 24px 60px rgba(31, 41, 55, 0.10);
-      --radius: 22px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                   "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(99,102,241,.12), transparent 32%),
-        radial-gradient(circle at 90% 15%, rgba(14,165,233,.10), transparent 28%),
-        var(--bg);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(228,232,240,.8);
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      font-size: 20px;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--primary), #7c3aed);
-      color: white;
-      box-shadow: 0 10px 25px rgba(79,70,229,.25);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-      background: var(--accent);
-    }
-
-    .hero {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 70px 24px 30px;
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 54px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
-    .hero h1 {
-      margin: 18px 0 16px;
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .hero-image {
-      position: relative;
-    }
-
-    .hero-image::before {
-      content: "";
-      position: absolute;
-      inset: 10% -5% -5% 5%;
-      background: linear-gradient(135deg, rgba(79,70,229,.18), rgba(14,165,233,.10));
-      filter: blur(35px);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    .hero-image img {
-      width: 100%;
-      max-width: 480px;
-      display: block;
-      margin: auto;
-      border-radius: 30px;
-      object-fit: cover;
-      box-shadow: var(--shadow);
-      border: 8px solid rgba(255,255,255,.72);
-    }
-
-    .section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 35px 24px 80px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid rgba(228,232,240,.9);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .form-card {
-      padding: 34px;
-    }
-
-    .section-heading {
-      margin-bottom: 28px;
-    }
-
-    .section-heading h2 {
-      margin: 0 0 7px;
-      font-size: 30px;
-      letter-spacing: -.035em;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label,
-    .field-label {
-      font-size: 13px;
-      font-weight: 750;
-      color: #30394d;
-    }
-
-    input,
-    select {
-      width: 100%;
-      height: 50px;
-      padding: 0 15px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--surface-solid);
-      color: var(--text);
-      font: inherit;
-      outline: none;
-      transition: .18s ease;
-    }
-
-    input::placeholder {
-      color: #9aa3b2;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(79,70,229,.10);
-    }
-
-    .two-fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .helper {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .submit-row {
-      margin-top: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 13px;
-      padding: 14px 22px;
-      font: inherit;
-      font-weight: 750;
-      cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-
-    .btn-primary {
-      min-width: 210px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--primary), #7c3aed);
-      box-shadow: 0 12px 25px rgba(79,70,229,.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 30px rgba(79,70,229,.30);
-    }
-
-    .prediction {
-      margin-top: 24px;
-      padding: 20px 22px;
-      border-radius: 16px;
-      background: var(--success-bg);
-      border: 1px solid var(--success-border);
-      color: var(--success-text);
-    }
-
-    .prediction-title {
-      margin: 0 0 5px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-weight: 800;
-    }
-
-    .prediction h3 {
-      margin: 0;
-      font-size: 26px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .info-card {
-      padding: 24px;
-    }
-
-    .info-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: var(--accent);
-      color: var(--primary);
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .info-card h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 30px;
-      align-items: center;
-      padding: 34px;
-    }
-
-    .about h2 {
-      margin-top: 0;
-      font-size: 30px;
-      letter-spacing: -.035em;
-    }
-
-    .about p {
-      color: var(--muted);
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      border-radius: 17px;
-      border: 1px solid var(--border);
-    }
-
-    footer {
-      padding: 28px 24px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,.72);
-      font-size: 13px;
-    }
-
-    @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 45px;
-      }
-
-      .hero-image {
-        order: -1;
-      }
-
-      .hero-image img {
-        max-width: 420px;
-      }
-
-      .form-grid,
-      .info-grid,
-      .about {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .nav-inner {
-        padding: 12px 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero,
-      .section {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .form-card,
-      .about {
-        padding: 22px;
-      }
-
-      .two-fields,
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .submit-row {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .btn-primary {
-        width: 100%;
-      }
-    }
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color: #0dcaf0; /* purple: */
+    color: #000;
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #212529; /* indigo*/
+    color: #fff;
+  }
+  .bg-4 { 
+    background-color: #495057; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
   </style>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-  var citiesByState = {
-      AndhraPradesh:[' Visakhapatnam', ' Vizianagaram', ' Guntur', ' Phirangipuram',
-       ' Adoni', ' Nellore', ' Vijayawada', ' Gundugolanu', ' Chodavaram',
-       ' Nandyal', ' Gajapathinagaram', ' Kakinada', ' Gooty', ' Tanuku',
-       ' Bhimavaram', ' Dharmavaram', ' Chittoor', ' Kurnool',
-       ' Tirupati', ' Edlapadu', ' Kadapa', ' Pedana', ' Srikakulam',
-       ' Punganur', ' Narsipatnam', ' Thatipaka', ' Rayachoti',
-       ' Peddapuram', ' Andhra Pradesh', ' Mydukur', ' Proddatur',
-       ' Badvel', ' Tenali', ' Giddaluru', ' Chilakalurupet',
-       ' Amalapuram', ' Koikuntla', ' Anakapalle', ' Kankipadu',
-       ' Ramachandrapuram', ' Gudivada', ' Rushikonda APIIC',
-       ' Narasannapeta', ' Eluru', ' Anantapur', ' Rajahmundry',
-       ' Kuppam', ' Machilipatnam', ' Narasapur', ' Sanivarapupeta',
-       ' Kaikaram', ' Bobbili', ' Tadepalligudem', ' Anaparthy', ' Dhone',
-       ' Palacole', ' Nagireddipalle', ' Piduguralla', ' Macherla',
-       ' Bandarulanka', ' Tadpatri', ' Kavali', ' Hindupur',
-       ' Murakambattu', ' Madhurawada', ' Madanapalle', ' Singarayakonda',
-       ' Atmakur Sri Potti Sriramulu', ' Pithapuram', ' Jaggaiahpet',
-       ' Draksharamam', ' Peda Boddepalle', ' Guntakal', ' Yemmiganur',
-       ' Palasa Kasibugga', ' Vuyyuru', ' Ongole', ' Chirala',
-       ' Markapur', ' Podili', ' Pileru', ' Pedatadepalli',
-       ' Parvathipuram', ' Narasaraopet', ' Medarametla', ' Kanapaka',
-       ' Maruteru', ' Rajampet', ' Dowleswaram', ' Payakaraopeta',
-       ' Kandukur', ' Paravada Industrial Area', ' Kathipudi',
-       ' Prattipadu', ' Repalle', ' Vinukonda', ' Amadalavalasa',
-       ' Pulivendula', ' Yenugonda', ' Tuni', ' Kanigiri',
-       ' Mamidalapadu', ' Palamaner', ' Chipurupalle', ' Kadiri',
-       ' Somandepalle', ' Mangalagiri', ' Allur', ' Achanta'], 
-       Rajasthan:[' Jodhpur', ' Jaipur', ' Sikar', ' Udaipur', ' Bikaner', ' Kherli',
-       ' Nimbahera', ' Chittorgarh', ' Losal', ' Sheoganj', ' Kota',
-       ' Beawar', ' RIICO Industrial Area Khushkhera', ' Alwar', ' Nokha',
-       ' Churu', ' Sawai Madhopur', ' Dausa', ' Balotra', ' Pali',
-       ' Rajgarh', ' Bagru', ' Boranada Special Economic Zone',
-       ' Kuchaman City', ' Malpura', ' Kotputli', ' Rajasthan', ' Bundi',
-       ' Sirohi', ' Sanchore', ' Bhilwara',
-       ' RIICO Industrial Area Bassi', ' Sri Madhopur',
-       ' Jodhpur Stone Park Industrial Area', ' BITS Pilani Campus',
-       ' Hanumangarh', ' Gangapur City', ' Ajmer', ' Sri Ganganagar',
-       ' Bhiwadi', ' Mathania', ' Barmer', ' Samdari', ' Behror', ' Bhim',
-       ' Makrana', ' Sambhar', ' Sadulshahar', ' Chaksu', ' Manoharthana',
-       ' Bishangarh', ' Sarwar', ' Todaraisingh',
-       ' Kishangarh Ajmer District', ' Tonk', ' Chomun', ' Nawalgarh',
-       ' Rajsamand', ' Baran', ' Suratgarh', ' Khairthal',
-       ' Chhoti Sadri', ' Pilani Town', ' Bharatpur', ' Dhaulpur',
-       ' Hindaun', ' Chirawa', ' Bandikui', ' Nadbai', ' Churu District',
-       ' Nagaur', ' Ajeetgarh', ' Merta City', ' Jhunjhunun', ' Mangrol',
-       ' Lachhmangarh', ' Ladnu', ' Bissau', ' Kishangarh Alwar District',
-       ' Bhadra', ' Surajgarh', ' Rani Sagar RIICO', ' Rawatsar', ' Deeg',
-       ' Phulera', ' Danta', ' Mehandipur', ' Aligarh', ' Nawa',
-       ' Anupgarh', ' Ramganj Mandi', ' Raisinghnagar',
-       ' Sumerpur Industrial Area', ' Jaitaran', ' Didwana', ' Bhinmal',
-       ' Ranthambore', ' Jaisalmer', ' Abu Road',
-       ' RIICO Industrial Area Neemrana', ' Deoli', ' Kekri', ' Ahore',
-       ' Pratapgarh', ' Khatu', ' Udaipurwati', ' Chhabra', ' Bayana',
-       ' Sadri', ' Kuchera'], 
-       chandigarh:[' Chandigarh', ' Ludhiana', ' Karoran', ' Mohali', ' Panchkula',
-       ' Zirakpur', ' Chandi Mandir', ' Banur', ' Kharar', ' Dera Bassi',
-       ' Rajpura', ' Ambala', ' Sirhind Fatehgarh Sahib', ' Rupnagar',
-       ' Morinda', ' Naraingarh', ' Lalru', ' Haryana', ' Kurali'], 
-       Tamil_Nadu:[' Vellalur', ' Tuticorin', ' Chennai', ' Kuthalam',
-       ' Tiruchirappalli', ' Tamil Nadu', ' Thanjavur', ' Puduchatram',
-       ' Madurai', ' Gudiyatham', ' Tirupattur', ' Manamadurai',
-       ' Tirunelveli', ' Padirikuppam', ' Madukkur', ' Coimbatore',
-       ' Nagercoil', ' Periyamanali', ' Hosur', ' Erode', ' Tiruppur',
-       ' Vadipatti', ' Kayalpattinam', ' Krishnagiri', ' Neyveli',
-       ' Salem', ' Pudukkottai', ' Melpattampakkam', ' Thiruparankundram',
-       ' Manapparai', ' Anaiyur', ' Padappai', ' Virudhunagar',
-       ' Mayiladuthurai', ' Tenkasi', ' Cuddalore', ' Usilampatti',
-       ' Thiruvaiyaru', ' Vedaranyam', ' Kallakkurichi', ' Devadanapatti',
-       ' Sathankulam', ' Mohamed Bundur', ' Sivaganga', ' Thevaram',
-       ' Gummidipoondi', ' Sarcarsamakulam', ' Virudhachalam',
-       ' Rasipuram', ' Tiruvannamalai', ' Mulagumudu', ' Pacode',
-       ' Thiruvenkadam', ' Palangarai', ' Kovilpatti', ' Tambaram',
-       ' Vellore', ' Muttayyapuram', ' Sirumugai', ' Swamimalai',
-       ' Thiruporur', ' Tiruchendur', ' Devarshola', ' Nanjikottai',
-       ' Marthandam', ' Thisayanvilai', ' A Vellalapatti', ' Velur',
-       ' Palamedu', ' SIPCOT Perundurai', ' Melvisharam', ' Ambur',
-       ' Kariapatti', ' Thirumangalam', ' Tharangambadi', ' Ariyalur',
-       ' Chengalpattu', ' Paramakudi', ' Kumbakonam', ' Gangavalli',
-       ' Palladam', ' Athipatti', ' Ambasamudram', ' Ambattur', ' Ilanji',
-       ' Tiruchengode', ' Nandivaram-Guduvancheri', ' Orathanadu',
-       ' Karur', ' Palani', ' Thiruvarur', ' Kancheepuram',
-       ' Kulasekaram', ' Kolachal', ' Theni Allinagaram', ' Pollachi',
-       ' Kasipalayam', ' Ranipettai', ' Nagapattinam', ' Anthiyur',
-       ' Kuhalur', ' Perundurai', ' Malumichampatti', ' Sankarankoil',
-       ' Thathankuttai Nagapattinam District', ' Mettur', ' Ponneri',
-       ' Arcot', ' Gobichettipalayam', ' Sulur', ' Kakkalur', ' Dindigul',
-       ' Villupuram', ' Thottiyam', ' Ooty', ' Komarapalayam',
-       ' Balakrishnapuram', ' Thiruvallur', ' Madambakkam', ' Thuraiyur',
-       ' Vandavasi', ' Avadi', ' Dharapuram', ' Sirkali',
-       ' Maduranthakam'],
-       Jharkhand:[' Ranchi', ' Deoghar', ' Jamshedpur', ' Hazaribagh',
-       ' Jaridih Bazar', ' Bokaro Steel City', ' Kanke', ' Jharia Khas',
-       ' Giridih', ' Pakaur', ' Danguwapasi', ' Dhanbad', ' Mihijam',
-       ' Irba', ' Daltonganj', ' Bhuli', ' Palawa', ' Jasidih',
-       ' Latehar', ' Ramgarh Cantonment', ' Jamadoba', ' Lohardaga',
-       ' Ray', ' Sindri', ' Rajbhita', ' Jhumri Tilaiya', ' Telodih',
-       ' Jorapokhar', ' Chaibasa', ' Jharkhand', ' Nirsa', ' Phusro',
-       ' Domchanch', ' Borio', ' Barharwa', ' Basukinath', ' Churi',
-       ' Netarhat', ' Rehla', ' Gumla', ' Ratu', ' Barhi', ' Madhupur',
-       ' Baliari', ' Bermo', ' Sahibganj', ' Musabani', ' AEC Complex',
-       ' Charhi', ' Patratu', ' Bokaro Thermal Township', ' Isri',
-       ' Topchanchi', ' Bishnugarh', ' Ghatshila', ' Kodarma',
-       ' Gobindpur', ' Chatra', ' Ramgarh', ' Khunti', ' Saunda',
-       ' Godda', ' Dumka', ' Kuju', ' Lalpania', ' Baharagora', ' Garhwa',
-       ' Karma Tanr', ' Pathardih', ' Simdega', ' Chakulia',
-       ' Chakradharpur', ' Kailudih', ' Chauparan', ' Chirkunda',
-       ' Baua Kalan', ' Hussainabad', ' Gomoh', ' Okni No 2', ' Panchet',
-       ' Chandwa', ' Katras', ' Dhanwar', ' Jhinkpani', ' Mera',
-       ' Lakarka', ' Tenu', ' Deorikalan'], 
-       Maharashtra:[' Nashik', ' Mumbai', ' Sangli (-Miraj)', ' Shevgaon', ' Bhiwandi',
-       ' Latur', ' Sillod', ' Bhusawal', ' Satara', ' Wardha', ' Pune',
-       ' Thane', ' Navi Mumbai', ' Ichalkaranji', ' Malegaon', ' Ramtek',
-       ' Nagpur', ' Desaiganj', ' Chalisgaon', ' Majgaon', ' Sakoli',
-       ' Jamner', ' Chinchwad', ' Aurangabad', ' Amravati', ' Tumsar',
-       ' Hingoli', ' Boisar', ' Ulhasnagar', ' Nanded', ' Pandharpur',
-       ' Badlapur', ' Satana', ' Dadar', ' Akola', ' Karad', ' Kolhapur',
-       ' Maharashtra', ' Shendra MIDC', ' Pauni', ' Jawhar', ' Ratnagiri',
-       ' Hinganghat', ' Waluj MIDC', ' Ambajogai', ' Raigad District',
-       ' Nanded Waghala', ' Yavatmal', ' Wani', ' Guhagar', ' Shikrapur',
-       ' Ghoti', ' Bid', ' Indapur', ' Vada', ' Ahmadnagar', ' Faizpur',
-       ' Navghar-Manikpur', ' Manor', ' Naigaon', ' Udgir',
-       ' Roha Ashtami', ' Sonpeth', ' Dehu Cantt', ' Parbhani',
-       ' Vangani', ' Niphad', ' Tirora', ' Achalpur', ' Motala',
-       ' Jalgaon', ' Ellora', ' Khamgaon', ' Kagal', ' Rajgurunagar Khed',
-       ' Buldana', ' Waghoda', ' Dhule', ' Georai', ' Lonavala',
-       ' Phaltan', ' Loni Kalbhor', ' Kudal', ' Butibori', ' Akkalkuwa',
-       ' Murgud', ' Paithan', ' Shirur', ' Umri', ' Nandgaon', ' Morshi',
-       ' Gondiya', ' Kopargaon', ' Sangamner', ' Hudkeshwar',
-       ' Jaysingpur', ' Varangaon', ' Solapur', ' Bhandara', ' Navapur',
-       ' Bori Parbhani District', ' Manmad', ' Chandrapur',
-       ' Kadegaon MIDC', ' Ausa', ' Vita', ' Osmanabad'], Haryana:[' Panchkula', ' Ambala', ' Sonipat', ' Buria', ' Yamunanagar',
-       ' Kalanaur', ' Rewari', ' Mahendragarh', ' Karnal', ' Tohana',
-       ' Uklanamandi', ' Hisar', ' Faridabad', ' Gurgaon', ' Panipat',
-       ' Rohtak', ' Kalayat', ' Ganaur', ' Nissing', ' Bhiwani',
-       ' Gharaunda', ' Julana', ' Nagal Chaudhry', ' Farrukhnagar',
-       ' Haryana', ' Palwal', ' Charkhi Dadri', ' Ladwa', ' Bawal',
-       ' Naraingarh', ' Pinjore', ' Kurukshetra', ' Fatehabad',
-       ' Bahadurgarh', ' Sirsa', ' Jind', ' Hansi', ' Maham', ' Narnaul',
-       ' Sampla', ' Kalka', ' Gohana', ' Kharkhoda', ' Loharu',
-       ' Kaithal', ' Adampur', ' Kanina', ' Dharuhera', ' Jhajjar',
-       ' Rai Industrial Area', ' Chhachhrauli', ' Uchana', ' Pehowa',
-       ' Taoru', ' Siwani', ' Cheeka', ' Kundli Industrial Area',
-       ' Shahbad', ' Beri', ' Ratia', ' Kalanwali', ' Barara', ' Bhakali',
-       ' Safidon', ' Narnaund', ' Taraori', ' Panipat Refinery Township',
-       ' Binola Industrial Area', ' Ellenabad', ' Ismailabad', ' Barwala',
-       ' Ladrawan', ' Nuh', ' Sankhol', ' Pundri', ' Saha',
-       ' Chandi Mandir', ' Assandh', ' Ateli'], 
-       Kerala:[' Thiruvananthapuram', ' Wayanad', ' Kannur', ' Kottakal',
-       ' Taliparamba', ' Kochi', ' Manjeri', ' Punalur', ' Kozhikode',
-       ' Kottayam', ' Kothamangalam', ' Pantheeramkavu', ' Malappuram',
-       ' Chendamangalam', ' Kasaragod', ' Koratty', ' Panniyannur',
-       ' Paravur', ' Nannambra', ' Oachira', ' Ettumanoor', ' Vengola',
-       ' Pathanamthitta', ' Aluva', ' Guruvayur', ' Cheleri', ' Nilambur',
-       ' Kallelibhagom', ' Ottappalam', ' Mannarkad I', ' Palakkad',
-       ' Elampalloor', ' Kanhangad', ' Thrissur', ' Kumarakom',
-       ' Angamaly', ' Thodupuzha', ' Muvattupuzha', ' Peringathur',
-       ' Iringaprom', ' Villiappally', ' Vadakkekara', ' Erattupetta',
-       ' Pallikkal', ' Changanacheri', ' Venginissery', ' Attingal',
-       ' Vazhayur', ' Pottore', ' Irinjalakuda', ' Varappuzha', ' Kollam',
-       ' Neyyattinkara', ' Kayamkulam', ' Kalpetta', ' Mattannur',
-       ' Karunagappally', ' Kunnamkulam', ' Iriveri', ' Kodungallur',
-       ' Iringal', ' Kolazhy', ' Puthuppally', ' Cherthala',
-       ' Kunnathunad', ' Idukki Township', ' Parappur', ' Mayyanad',
-       ' Thrikkaruva', ' Perumbavoor', ' Elayavoor', ' Edathiruthy',
-       ' Avittathur', ' Kizhuparamba', ' Chalakudy', ' Alappuzha',
-       ' Munnar', ' Kondotty', ' Vylathur', ' Ayancheri',
-       ' Mulamthuruthy', ' Vadama', ' Alathur', ' Puthukkad',
-       ' Parasuvaikkal', ' Kodur', ' Manantheri', ' Nenmenikkara',
-       ' Alamcode Thiruvananthapuram District', ' Uppala', ' Panachikkad',
-       ' Vaikom', ' Choondal', ' Nedumangad', ' Mavelikkara',
-       ' Venkitangu', ' Chengamanad', ' Kadungalloor', ' Perole',
-       ' Vaniyamkulam II', ' Talakkad', ' Kulathummal', ' Kadamakkudy',
-       ' Vadakkekad', ' Palai', ' Paravoor', ' Dharmadom',
-       ' Cheruthazham', ' Varkala', ' Veluthur', ' Azhikode', ' Edappal',
-       ' Perinthalmanna', ' Vilappil', ' Marancheri', ' Vengara',
-       ' Manakunnam', ' Kuttippuram', ' Alur', ' Shoranur',
-       ' Kozhenchery', ' Panayam', ' Choornikkara', ' Payyannur',
-       ' Thiruvalla', ' Thrikkadavoor', ' Anthicad', ' Karikkad',
-       ' Kuruvattur', ' Poomangalam', ' Edavilangu', ' Meenad',
-       ' Olavanna', ' Eramalloor', ' South Thrikkaripur', ' Beypore',
-       ' Mavoor', ' Kalady Ernakulam District', ' Pavaratty',
-       ' Thalassery', ' Tirur', ' Kattappana', ' Kadikkad', ' Chowwara',
-       ' Kudlu'],
-        MadhyaPradesh:[' Jabalpur', ' Ujjain', ' Shujalpur', ' Bhopal',
-       ' Makronia Buzurg', ' Indore', ' Chhindwara', ' Shahdol', ' Rewa',
-       ' Guna', ' Mhow', ' Pasan', ' Betul', ' Morena', ' Karera',
-       ' Vindhya Nagar NTPC Township', ' Datia', ' Bamhani', ' Bhind',
-       ' Itarsi', ' Gwalior', ' Sihora', ' Sarni', ' Ratlam',
-       ' Katangi Balaghat District', ' Vidisha', ' Neemuch', ' Mehgaon',
-       ' Kasrawad', ' Burhanpur', ' Seoni', ' Singrauli', ' Panna',
-       ' Shahpur Sagar District', ' Harda', ' Bhanpura', ' Sonkatch',
-       ' Shivpuri', ' Madhya Pradesh', ' Ashoknagar', ' Anjad', ' Namli',
-       ' Dewas', ' Rajgarh Rajgarh District', ' Alot', ' Nagda',
-       ' Maneri Industrial Growth Centre', ' Pithampur', ' Basoda',
-       ' Niwari', ' Dhodaramohar Alias Bhoura', ' Burhar', ' Malajkhand',
-       ' Garra', ' Manasa', ' Sohagpur', ' Waraseoni', ' Satna',
-       ' Sanwer', ' Pipariya', ' Mandsaur', ' Kareli', ' Mandla',
-       ' Multai', ' Tikamgarh', ' Gadarwara', ' Hoshangabad', ' Sidhi',
-       ' Sanchi', ' Depalpur', ' Sheopur', ' Dabra', ' Malhargarh',
-       ' Khandwa', ' Pandhana', ' Raisen', ' Khargone', ' Gohad',
-       ' Sagar', ' Murwara Katni', ' Berasia', ' Porsa', ' Shajapur',
-       ' Narsimhapur', ' Chandameta Butaria', ' Dhamnod Dhar District',
-       ' Seoni Malwa', ' Ghoda Dongri Ryt', ' Mangalya', ' Seondha',
-       ' Tarana', ' Chhota Chhindwara', ' Pithampur Industrial Hub',
-       ' Jaora', ' Raymond Chhindwara', ' Alirajpur', ' Mandideep',
-       ' Rau', ' Ashta', ' Joura', ' Sehore', ' Sendhwa', ' Jobat',
-       ' Bina-Etawa', ' Semaria', ' Aron', ' Mungaoli', ' Nowgong',
-       ' Badnagar', ' Barghat', ' Balaghat', ' Banda'],
-       Odisha:[' Baleshwar', ' Sambalpur', ' Berhmapur', ' Godiputamatiapara',
-       ' Choudwar', ' Bhubaneshwar', ' Dhamanagar', ' Cuttack',
-       ' Sundargarh', ' Nagaon', ' Rambha', ' Rourkela', ' Junagarh',
-       ' Bargarh', ' Kantabanji', ' Gourdanda', ' G Udayagiri',
-       ' Lanjigarh', ' Anugul', ' Kamakshyanagar', ' Parlakhemundi',
-       ' Odisha', ' Puri', ' Bhadrak', ' Kendujhar', ' Karanjia',
-       ' Patrapur', ' Baripada', ' Joda', ' Dhenkanal', ' Lathikata',
-       ' Kalinga Nagar Industrial Area', ' Jhumpura', ' Balakati',
-       ' Kansbahal', ' Phulabani', ' Kesinga', ' Ranapurgada',
-       ' Malkangiri', ' OCL Industrial Township', ' Udala', ' Byasanagar',
-       ' Jharsuguda', ' Balugaon', ' Banki', ' Chhatrapur', ' Hirakud',
-       ' Khariar', ' Belpahar', ' Chandili', ' Golabandha', ' Remuna',
-       ' Jajapur', ' Kendrapara', ' Barapali', ' Brajarajnagar',
-       ' Badamba', ' Kochinda', ' Daringbadi', ' Chikiti', ' Papadahandi',
-       ' Burla', ' Pipili', ' Barbil', ' Jeypur', ' Buguda', ' Itamati',
-       ' Pattamundai', ' Kanheipur', ' Anjira', ' Jatani', ' Boudh',
-       ' Jaleswar', ' Charibatia', ' Balangir', ' Rajasunakhala',
-       ' Vedanta Jharsuguda', ' Khaliapali',
-       ' Talcher Thermal Power Station Township', ' Nayagarh',
-       ' Anandapur', ' Bhanjanagar', ' Brahmabarada', ' Sonapur',
-       ' Nuapatna', ' Bhuban', ' Nimapada', ' Banapur', ' Bhawanipatna',
-       ' Padmapur', ' Soro', ' JSPL Town Anugul Township',
-       ' Badmal Township', ' Jagatsinghapur', ' Krushnanandapur',
-       ' Majhihara', ' Nabarangapur', ' Bijepur', ' Asika', ' Titlagarh',
-       ' Talcher', ' Sohela', ' Polasara', ' Patnagarh', ' Tusura',
-       ' Dera Colliery Township', ' Tangi',
-       ' Bhushan Steel Plant Meramandali Township', ' Ganjam'],
-        Bihar:[' Barbigha', ' Bihar', ' Harnaut', ' Rajgir', ' Warisaliganj',
-       ' Silao', ' Patna', ' Mahnar Bazar', ' Fatwah', ' Nawada',
-       ' Sheikhpura', ' Barh', ' Mokameh', ' Ekangar Sarai', ' Hilsa',
-       ' Islampur', ' Hisua', ' Samastipur', ' NTPC Barh Township',
-       ' Masaurhi', ' Bakhtiarpur', ' Mohiuddinagar', ' Gaya'], 
-       Gujarat:[' Surat', ' Limbdi', ' Amreli', ' Vapi', ' Bharuch', ' Ahmedabad',
-       ' Navsari', ' Pardi', ' Vadodara', ' Rajkot', ' Dharampur',
-       ' Saputara', ' Dohad', ' Junagadh', ' Nadiad', ' Jamnagar',
-       ' Patdi', ' Petlad', ' Anand', ' Dhrangadhra', ' Vyara',
-       ' Bhavnagar', ' Padra', ' Anklesvar', ' Bhuj', ' Bardoli',
-       ' Palej', ' Tarsadi', ' Mahuva', ' Tharad', ' Dahej SIR',
-       ' Virpur Rajkot District', ' Gandhidham', ' Chalala',
-       ' Mandvi Kachchh District', ' Viramgam', ' Gandhinagar',
-       ' Bhachau', ' Surendranagar', ' Patan', ' Sihor', ' Unjha',
-       ' Valsad', ' Halol', ' Vijapur', ' Mundra', ' Mahesana', ' Jasdan',
-       ' Wankaner', ' Botad', ' Sutrapada', ' Chanod', ' Khambhalia',
-       ' Kharach', ' Kheralu', ' Palanpur', ' Gondal', ' Godhra',
-       ' Chanasma', ' Ambaliyasan', ' Umrala', ' Kakoshi', ' Halvad',
-       ' Karjan', ' Chorwad', ' Upleta', ' Songadh Tapi District',
-       ' Bechar Alias Becharaji', ' Keshod', ' Khambhat', ' Jambusar',
-       ' Baben', ' Porbandar', ' Dwarka', ' Una', ' Sarigam', ' Somnath',
-       ' Rajula', ' Balasinor', ' Veraval', ' Paddhari', ' Kalol',
-       ' Savarkundla', ' Gujarat', ' Jamjodhpur', ' Lunawada', ' Bhanvad',
-       ' Harij', ' Songadh Bhavnagar District', ' Sojitra', ' Bilimora',
-       ' Mangrol', ' Disa', ' Jamavala'],
-        West_Bengal:[' West Bengal', ' Ranaghat', ' Kolkata', ' Rajpur Sonarpur',
-       ' Gangarampur', ' Balichak', ' Jaynagar Mazilpur', ' Bidhannagar',
-       ' Raiganj', ' Kharagpur', ' Garh Kamalpur', ' Mathabhanga',
-       ' Medinipur', ' Hingalganj', ' Hooghly', ' Memari', ' Siliguri',
-       ' Milki', ' Ilambazar', ' Chaltia', ' Howrah',
-       ' Chandpur North Twenty Four Parganas District', ' Krishnanagar',
-       ' Durgapur', ' Deulia', ' Uttar Bagdogra', ' Kalimpong',
-       ' Chandannagar M.C.', ' Bally', ' Kalyani', ' Bardhaman',
-       ' Haringhata Farm', ' Chakdah', ' Suri', ' Bhangar Raghunathpur',
-       ' Baktarnagar', ' Malda', ' Koch Bihar', ' New Town', ' Deara',
-       ' Darjeeling', ' Serampore', ' Jiaganj Azimganj', ' Koyra',
-       ' Malbazar', ' Sainthia', ' Hijuli', ' Labhpur', ' Sobhaganj',
-       ' Jalpaiguri', ' Aiho', ' Parasia', ' Dalkhola', ' Asansol MC',
-       ' Alipurduar Rly Jnc', ' Behrampore', ' Lataguri',
-       ' Jagadanandapur', ' Alipurduar', ' Dhulasimla', ' Kotulpur',
-       ' Beldanga', ' Kodalia', ' Uttar Pirpur',
-       ' Raghunathpur Hugli District', ' Habra', ' Puruliya',
-       ' Shimulpur', ' Dhanyakuria', ' Bolpur', ' Haldia',
-       ' Banarhat Tea Garden', ' Mira', ' Anup Nagar', ' Rampurhat',
-       ' Raniganj', ' Bagula', ' Durllabhganj', ' Bankra', ' Kakdihi',
-       ' Nagdaha', ' Rangabhita', ' Chanddandaha', ' Jaygaon',
-       ' Samudragarh', ' Bansberia', ' Naridana', ' Sonamukhi',
-       ' Guskara', ' Kurseong', ' Chamrail',
-       ' Bakreshwar Thermal Power Township', ' Madhyamgram', ' Matla',
-       ' Mirik', ' Tamluk', ' Ukhra', ' Harharia Chak', ' Podara',
-       ' Kandi', ' Champdani', ' Murshidabad', ' Contai', ' Bahirgram',
-       ' Khantora', ' Kalaria', ' English Bazar', ' Adra',
-       ' Ichhapur Defence Estate Civil Township', ' Barunda'], 
-       Karnataka:[' Bengaluru', ' Hubballi', ' Mangaluru', ' Belur Industrial Area',
-       ' Manvi', ' Yelahanka', ' Nargund', ' Kalaburagi', ' Kudchi',
-       ' Gauribidanur', ' Belagavi', ' Varamballi', ' Chamrajnagar',
-       ' Gangawati', ' Kolar', ' Indi', ' Gadag Betigeri', ' Puttur',
-       ' Mysuru', ' Bidar', ' Nanjangud', ' Dharwad', ' Ballari',
-       ' Kundgol', ' Bhadravati', ' Sulya', ' Adyar', ' Mandya',
-       ' Hassan', ' Homnabad', ' Karnataka', ' Dobaspet Industrial Area',
-       ' Ranebennur', ' Kunigal', ' Shahpur', ' Ramdurg',
-       ' Mellahalli Mysore District', ' Yadgir', ' Madihal', ' Raichur',
-       ' Kotturu', ' Pavagada', ' Koppal', ' Arsikere', ' Sirsi',
-       ' Davanagere', ' Ankola', ' Lingsugur', ' Saligram', ' Tumakuru',
-       ' Shivamogga', ' Munirabad Project Area', ' Hosapete', ' Hunsur',
-       ' Vijayapura', ' Mahalingpur', ' Mulbagal', ' Kundapura',
-       ' Bagalkot', ' Channarayapatna', ' Udupi', ' Channagiri',
-       ' Chintamani', ' Moodabidri', ' Chikkamagaluru', ' Muduperar',
-       ' Belur', ' Thumbe', ' Bhatkal', ' JSW Steel Plant Township',
-       ' Periyapatna', ' Haveri', ' Londa', ' Chitradurga', ' Jamkhandi',
-       ' Hosdurga', ' Mundgod', ' Kamatgi', ' Pandavapura',
-       ' Hole Narsipur', ' Pudu', ' Honavar', ' Haliyal', ' Sidlaghatta',
-       ' Bannur', ' Bail Hongal', ' Navalgund', ' Lakshmeshwar',
-       ' Basavana Bagevadi', ' Channapatna', ' Hiriyur', ' Aland',
-       ' Kushalanagara', ' Yellapur', ' Ramanagara', ' Robertsonpet'], 
-       Punjab:[' Kharar', ' Karoran', ' Goniana', ' Malaut', ' Jagraon',
-       ' Amritsar', ' Dinanagar', ' Batala', ' Maraar Kalan', ' Patran',
-       ' Nakodar', ' Pathankot', ' Mullanpur Dakha', ' Firozpur',
-       ' Jandiala Amritsar District', ' Banur', ' Rupnagar',
-       ' Dera Bassi', ' Bathinda', ' Bhankarpur', ' Abohar',
-       ' Sirhind Fatehgarh Sahib', ' Ludhiana', ' Bhucho Mandi',
-       ' Patiala', ' Phagwara', ' Mukerian', ' Zirakpur', ' Mohali',
-       ' Talwara', ' Sri Hargobindpur', ' Tarantaran', ' Jalandhar',
-       ' Anandpur Sahib', ' Gobindgarh', ' Kot Ise Khan', ' Lalru',
-       ' Maur', ' Kurali', ' Kotkapura', ' Doraha', ' Qadian',
-       ' Giddarbaha', ' Punjab', ' Dirba', ' Malerkotla', ' Rajpura',
-       ' Sangrur', ' Guru Har Sahai', ' Nabha', ' Jalalabad',
-       ' Talwandi Sabo', ' Ahmedgarh', ' Hoshiarpur', ' Muktsar',
-       ' Patti', ' Urmar Tanda', ' Zira', ' Raikot', ' Morinda',
-       ' Khanna', ' Mansa', ' Nawanshahr', ' Hariana', ' Gurdaspur',
-       ' Sunam', ' Sujanpur', ' Mandi Govindgarh', ' Nurmahal',
-       ' Bhadson', ' Khanauri', ' Ajnala', ' Dhuri', ' Garhshankar',
-       ' Bhagta Bhai Ka', ' Sham Chauras I', ' Samrala', ' Manwal',
-       ' Sardulgarh', ' Jaitu', ' Rurki Kasba', ' Fazilka', ' Kapurthala',
-       ' Beas', ' Bassi Pathana', ' Banga', ' Faridkot', ' Barnala',
-       ' Samana', ' Chogawan', ' Goraya', ' Makhu', ' Bareta',
-       ' Raja Sansi', ' Moga', ' Mudal', ' Dasuya', ' Phillaur',
-       ' Alawalpur', ' Rampura Phul', ' Dhanaula', ' Dhilwan',
-       ' Bhikhiwind'],
-       Uttaranchal:[' Khatima', ' Dehradun', ' Selaqui', ' SIDCUL Haridwar',
-       ' Uttaranchal', ' Sitarganj', ' Haridwar', ' Jaspur', ' Roorkee',
-       ' Rudrapur', ' Doiwala', ' Ramnagar', ' Haldwani',
-       ' Piran Kaliyar', ' Bhagwanpur', ' Laksar', ' Mussoorie',
-       ' Herbertpur', ' Bahadarabad', ' Kashipur', ' Rishikesh',
-       ' Fatehpur Range Civil Township', ' Kathgodam', ' Lalkuan',
-       ' Kirtinagar', ' Gadarpur', ' Jhabrera', ' Manglaur', ' Lansdowne',
-       ' Mahua Kheraganj', ' Kotdwara', ' Pithoragarh', ' Landhaura',
-       ' Ranikhet', ' Gopeshwar', ' Almora', ' Pauri', ' Barkot',
-       ' Chamba', ' Nainital', ' Gangolihat', ' Srinagar', ' Banbasa',
-       ' New Tehri', ' Gochar', ' Vikasnagar', ' Mahua Dabra Haripura',
-       ' Sara Industrial Estate', ' Natthuwa Wala', ' Tanakpur',
-       ' Uttarkashi', ' Mukteshwar', ' Corbett', ' Bhowali',
-       ' Kachnal Gosain', ' Dhanaulti', ' Nagla', ' Chamoli',
-       ' Karnaprayag', ' Bazpur', ' Tehri', ' Pratitnagar', ' Bageshwar',
-       ' SIDCUL Kotadwara'], 
-       Telangana:[' Hyderabad', ' Kodad', ' Karimnagar', ' Kondamallapalle',
-       ' Nizambad', ' Ramannapeta', ' Koratla', ' Warangal',
-       ' Sathupally', ' Secunderabad', ' Khammam', ' Jannaram',
-       ' Sircilla', ' Miryalaguda', ' Dornakal', ' Telangana', ' Chitkul',
-       ' Ghanpur Nizamabad District', ' Allipur', ' Mahbubnagar',
-       ' Asifabad', ' Pothreddipalle', ' Tandur', ' Pargi', ' Bodhan',
-       ' Nirmal', ' Kukatpally', ' Naspur', ' Yellareddy', ' Siddipet',
-       ' Palwancha', ' Huzur Nagar', ' Kothagudem', ' Metapally',
-       ' Sarapaka', ' Narayanpet', ' Kapra', ' Chinnachitakunta',
-       ' LB Nagar', ' Narayankhed', ' Jangaon', ' Vemulawada', ' Armur',
-       ' Gadwal', ' Ieeja', ' Bellampalle', ' Jagtial', ' Palakurthy',
-       ' Chennur', ' Medak', ' Nagarkurnool', ' Tallada',
-       ' Ghanpur Warangal District', ' Kisan Nagar Industrial Area',
-       ' Jammikunta', ' Wanaparthy', ' Gajwel', ' Achampet',
-       ' Bheema Cements Limited Ramapuram', ' Ichoda', ' Ramagundam',
-       ' Thorrur', ' Utnur', ' Kyathampalle', ' Mahabubabad',
-       ' Kalwakurthy'], Assam:[' Silchar', ' Guwahati', ' Assam', ' Tezpur',
-       ' Hindustan Paper Corporation Ltd Township Panchgram', ' Lala',
-       ' Bhomoraguri AIDC', ' Tinsukia', ' Lanka', ' Lido Town',
-       ' Lakhipur Cachar District', ' Sarupathar', ' Howli', ' Dibrugarh',
-       ' Gohpur', ' Niz Katigorah Pt III', ' Doboka', ' Dhemaji',
-       ' Rangia', ' Lakhipur Goalpara District', ' Niz Hajo',
-       ' Karimganj', ' Nagaon', ' Kalaigaon Town Part', ' Badarpur',
-       ' Titabor Town', ' Goalpara', ' Bongaigaon', ' BCPL Township',
-       ' Howraghat', ' Margherita', ' Haflong', ' Sibsagar',
-       ' Hailakandi', ' Bongaigaon RPCL Township', ' Golaghat',
-       ' Jonai Bazar', ' North Lakhimpur', ' Jamunamukh', ' Jorhat',
-       ' Dergaon', ' Barpeta', ' Diphu', ' Gossaigaon', ' Digaru Gaon',
-       ' Bilasipara', ' Biswanath Chariali', ' Abhayapuri', ' Nalbari',
-       ' Dhing', ' Udalguri', ' Moranhat', ' Rangapara', ' Kharijapikon',
-       ' Dhekiajuli', ' Mangaldoi', ' Narayanpur Nalbari District',
-       ' Sepon', ' Kharupatia', ' Pub Dhaniram Pather', ' Nahira',
-       ' Bihpuria', ' Mariani', ' Numaligarh Refinery Township', ' Bijni',
-       ' Golokganj', ' Nazira', ' Moran Town', ' Naharkatiya', ' Hojai',
-       ' Bhuragaon', ' Kokrajhar', ' Dhekorgorha', ' Sonari',
-       ' Chapakhowa Town', ' Chapar', ' Sapatgram', ' Marigaon',
-       ' Irongmara', ' Azara', ' Lumding', ' Belsor', ' Doom Dooma',
-       ' Kamalabaria NC', ' Majgaon', ' Duliajan',
-       ' New Bongaigaon Railway Colony', ' Makum Tinsukia District',
-       ' Digboi', ' North Guwahati', ' Barpathar', ' Badarpur Rly Town',
-       ' Kochpara', ' Changsari', ' Raha', ' Tangla', ' Basugaon',
-       ' Dhubri', ' Pathsala'], 
-       UttarPradesh:[' Lucknow', ' Noida', ' Ghaziabad', ' Muradnagar', ' Saharanpur',
-       ' Deoria', ' Behta Hazipur', ' Gajraula', ' Meerut', ' Rampur',
-       ' Kanth Shahjahanpur District', ' Kora Jahanabad', ' Saraon',
-       ' Titron', ' Shahjahanpur', ' Aligarh', ' Fatehganj Purvi',
-       ' Orai Jalaun District', ' Naugarh', ' Vrindavan', ' Moradabad',
-       ' Mohammadabad Ghazipur District', ' Gagalhedi Must', ' Jasra',
-       ' Daurala', ' Kanpur', ' Varanasi', ' Kailashpur', ' Gorakhpur',
-       ' Bidhuna', ' Bareilly', ' Greater Noida', ' Garauri', ' Mirzapur',
-       ' Bulandshahr', ' Maswasi', ' Sadatmasaura', ' Agra', ' Jansath',
-       ' Gola Gokarannath', ' Aonla', ' Barabanki', ' Jaunpur', ' Bhinga',
-       ' Sahanpur', ' Nivi', ' Chhutmalpur', ' Ahraura', ' Harraiya',
-       ' Baraut', ' Bhatpar Rani', ' Pilibhit', ' Bangarmau', ' Gangoh',
-       ' Allahabad', ' Katra Shahjahanpur District', ' Mahul Khas',
-       ' Jahangirpur', ' Mehdawal', ' Kathaura', ' Sambhal',
-       ' Muzaffarnagar', ' Ballia', ' Sitapur', ' Sarai Mir', ' Fatehpur',
-       ' Tanda Rampur District', ' Lakhimpur', ' Miranpur',
-       ' Nawabganj Bareilly District', ' Azmatgarh',
-       ' Leather Park Banthar', ' Firozabad', ' Patti', ' Unnao',
-       ' Faizabad', ' Haldaur', ' Hapur', ' Pakbara', ' Mariahu',
-       ' Baksar', ' Kushinagar', ' Amroha', ' Loni', ' Azamgarh',
-       ' Dadri', ' Baheri', ' Bijnor', ' Mathura', ' Kithaur', ' Sirathu',
-       ' Kunda', ' Uttar Pradesh', ' Patiyali', ' Nizamabad', ' Shahpur',
-       ' Singahi Bhiraura', ' Kasganj', ' Padrauna', ' Barhalganj',
-       ' Thiriya Nizamat Khan', ' Ghatampur', ' Rasra', ' Gonda',
-       ' Thakurdwara', ' Hathras', ' Suthana Barsola', ' Akbarpur',
-       ' Jhansi', ' Sakaldiha', ' Machhlishahr', ' Hargaon', ' Chakia',
-       ' Bhojpur Dharampur', ' Mohan', ' Bahraich', ' Pipraich',
-       ' Parasi', ' Musafirkhana', ' Umri Kalan', ' Handia', ' Shamli',
-       ' Purquazi', ' Budhana', ' Sherkot', ' Gola Bazar', ' Niwari',
-       ' Kursi Road Industrial Area', ' Belthara Road', ' Saiyad Raja',
-       ' Maunath Bhanjan', ' Pilkhuwa', ' Kurthi Jafarpur', ' Kotwali',
-       ' Bihka', ' Gursahaiganj', ' Richha', ' Chandauli', ' Modinagar',
-       ' Parikshitgarh', ' Khurja', ' Ghazipur',
-       ' Gosainganj Faizabad District', ' Sewalkhas',
-       ' Mahrajganj Azamgarh District', ' Bilsanda', ' Mainpuri',
-       ' Mughalsarai', ' Kemri', ' Khargupur', ' Shahganj', ' Rae Bareli',
-       ' Gabhana', ' Gaura Barhaj', ' Korwa', ' Ghorawal', ' Konch',
-       ' Sultanpur', ' Jangipur', ' Artauni', ' Etawah', ' Chhata',
-       ' Behat', ' Kannauj', ' Babugarh', ' Balrampur', ' Basti',
-       ' Hasanpur', ' Kakari', ' Faridnagar', ' Budaun', ' Shahabad',
-       ' Sewarhi', ' Ayodhya', ' Shikohabad', ' Khutar', ' Sikandra Rao'], 
-       Delhi:['Delhi']
-    }
-    var modelsByBike ={
-      Bajaj:['Pulsar', 'Avenger', 'CT 100', 'Platina', 'Others', 'Discover'],KTM:['390 Duke ABS', 'Others', 'RC', 'Duke 200'],Royal_Enfield:['Bullet', 'Continental GT', 'Classic', 'Thunderbird', 'Others'],Yamaha:['FZ', 'Others', 'FZS', 'Saluto', 'YZF R', 'SZ', 'Fazer', 'Crux',
-       'Vmax', 'SS 125', 'YBR'],Honda:['Others', 'CB', 'CBF Stunner', 'CD 110 Dream', 'CBR', 'Dream Yuga'],Hero:['Passion', 'Glamour', 'Splendor', 'Others', 'Karizma', 'CBZ',
-       'Deluxe', 'CD Deluxe', 'Super Splendor', 'CD Dawn', 'Ignitor',
-       'Hunk', 'Achiever', 'CD 100', 'Impulse', 'HX 250 R', 'Ambition',
-       'Dawn'],Other_Brands:['Others'],TVS:['Others', 'Apache RTR', 'Star City Plus', 'Heavy Duty Super XL',
-       'Star Sport', 'Phoenix'],Suzuki:['GS', 'Gixxer', 'Others', 'Slingshot', 'Hayate', 'GSX', 'Hayabusa',
-       'Bandit', 'Access', 'M800'],Hero_Honda:['CBZ', 'Passion', 'Splendor', 'Others', 'Glamour', 'Hunk',
-       'Super Splendor', 'CD Deluxe', 'CD 100', 'Achiever', 'Karizma',
-       'Ambition', 'Deluxe', 'Street', 'CD Dawn', 'Ignitor', 'Dawn']
-
-
-    }    
-  
-    function makeSubmenu(value) {
-    if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
-    else {
-    var citiesOptions = "";
-    for(cityId in citiesByState[value]) {
-    citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
-    }
-        document.getElementById("citySelect").innerHTML = citiesOptions;
-    }
-    }
-
-    
-</script>
-
-<script type="text/javascript">
-    function makeSubmenu1(value) 
-    {
-    if(value.length==0) document.getElementById("modelSelect").innerHTML = "<option></option>";
-    else {
-    var modelsOptions = "";
-    for(modelId in modelsByBike[value]) {
-    modelsOptions+="<option>"+modelsByBike[value][modelId]+"</option>";
-    }
-    document.getElementById("modelSelect").innerHTML = modelsOptions;
-    }
-    }
-
-    function resetSelection() 
-    {
-    document.getElementById("countrySelect").selectedIndex = 0;
-    document.getElementById("citySelect").selectedIndex = 0;
-    document.getElementById("bikeSelect").selectedIndex = 0;
-    document.getElementById("modelSelect").selectedIndex = 0;
-    document.getElementById("Kilo-Meter").selectedIndex = 0;
-    document.getElementById("year").selectedIndex = 0;
-
-
-    }
-    function displaySelected() 
-    { 
-      var country = document.getElementById("countrySelect").value;
-      var city = document.getElementById("citySelect").value;
-      var bike=document.getElementById("bikeSelect").value;
-      var model=document.getElementById("modelSelect").value;
-      var kilo=document.getElementById("Kilo-Meter").value;
-      var year=document.getElementById("year").selectedIndex.value;
-
-
-
-      alert(country+"\n"+city+"\n"+bike+"\n"+model+"\n"+kilo+"\n"+year);
+  <style>
+  .header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background: #555;
 }
-</script>
 
-<script type="text/javascript">
-  var citiesByState = {
-      AndhraPradesh:[' Visakhapatnam', ' Vizianagaram', ' Guntur', ' Phirangipuram',
-       ' Adoni', ' Nellore', ' Vijayawada', ' Gundugolanu', ' Chodavaram',
-       ' Nandyal', ' Gajapathinagaram', ' Kakinada', ' Gooty', ' Tanuku',
-       ' Bhimavaram', ' Dharmavaram', ' Chittoor', ' Kurnool',
-       ' Tirupati', ' Edlapadu', ' Kadapa', ' Pedana', ' Srikakulam',
-       ' Punganur', ' Narsipatnam', ' Thatipaka', ' Rayachoti',
-       ' Peddapuram', ' Andhra Pradesh', ' Mydukur', ' Proddatur',
-       ' Badvel', ' Tenali', ' Giddaluru', ' Chilakalurupet',
-       ' Amalapuram', ' Koikuntla', ' Anakapalle', ' Kankipadu',
-       ' Ramachandrapuram', ' Gudivada', ' Rushikonda APIIC',
-       ' Narasannapeta', ' Eluru', ' Anantapur', ' Rajahmundry',
-       ' Kuppam', ' Machilipatnam', ' Narasapur', ' Sanivarapupeta',
-       ' Kaikaram', ' Bobbili', ' Tadepalligudem', ' Anaparthy', ' Dhone',
-       ' Palacole', ' Nagireddipalle', ' Piduguralla', ' Macherla',
-       ' Bandarulanka', ' Tadpatri', ' Kavali', ' Hindupur',
-       ' Murakambattu', ' Madhurawada', ' Madanapalle', ' Singarayakonda',
-       ' Atmakur Sri Potti Sriramulu', ' Pithapuram', ' Jaggaiahpet',
-       ' Draksharamam', ' Peda Boddepalle', ' Guntakal', ' Yemmiganur',
-       ' Palasa Kasibugga', ' Vuyyuru', ' Ongole', ' Chirala',
-       ' Markapur', ' Podili', ' Pileru', ' Pedatadepalli',
-       ' Parvathipuram', ' Narasaraopet', ' Medarametla', ' Kanapaka',
-       ' Maruteru', ' Rajampet', ' Dowleswaram', ' Payakaraopeta',
-       ' Kandukur', ' Paravada Industrial Area', ' Kathipudi',
-       ' Prattipadu', ' Repalle', ' Vinukonda', ' Amadalavalasa',
-       ' Pulivendula', ' Yenugonda', ' Tuni', ' Kanigiri',
-       ' Mamidalapadu', ' Palamaner', ' Chipurupalle', ' Kadiri',
-       ' Somandepalle', ' Mangalagiri', ' Allur', ' Achanta'], 
-       Rajasthan:[' Jodhpur', ' Jaipur', ' Sikar', ' Udaipur', ' Bikaner', ' Kherli',
-       ' Nimbahera', ' Chittorgarh', ' Losal', ' Sheoganj', ' Kota',
-       ' Beawar', ' RIICO Industrial Area Khushkhera', ' Alwar', ' Nokha',
-       ' Churu', ' Sawai Madhopur', ' Dausa', ' Balotra', ' Pali',
-       ' Rajgarh', ' Bagru', ' Boranada Special Economic Zone',
-       ' Kuchaman City', ' Malpura', ' Kotputli', ' Rajasthan', ' Bundi',
-       ' Sirohi', ' Sanchore', ' Bhilwara',
-       ' RIICO Industrial Area Bassi', ' Sri Madhopur',
-       ' Jodhpur Stone Park Industrial Area', ' BITS Pilani Campus',
-       ' Hanumangarh', ' Gangapur City', ' Ajmer', ' Sri Ganganagar',
-       ' Bhiwadi', ' Mathania', ' Barmer', ' Samdari', ' Behror', ' Bhim',
-       ' Makrana', ' Sambhar', ' Sadulshahar', ' Chaksu', ' Manoharthana',
-       ' Bishangarh', ' Sarwar', ' Todaraisingh',
-       ' Kishangarh Ajmer District', ' Tonk', ' Chomun', ' Nawalgarh',
-       ' Rajsamand', ' Baran', ' Suratgarh', ' Khairthal',
-       ' Chhoti Sadri', ' Pilani Town', ' Bharatpur', ' Dhaulpur',
-       ' Hindaun', ' Chirawa', ' Bandikui', ' Nadbai', ' Churu District',
-       ' Nagaur', ' Ajeetgarh', ' Merta City', ' Jhunjhunun', ' Mangrol',
-       ' Lachhmangarh', ' Ladnu', ' Bissau', ' Kishangarh Alwar District',
-       ' Bhadra', ' Surajgarh', ' Rani Sagar RIICO', ' Rawatsar', ' Deeg',
-       ' Phulera', ' Danta', ' Mehandipur', ' Aligarh', ' Nawa',
-       ' Anupgarh', ' Ramganj Mandi', ' Raisinghnagar',
-       ' Sumerpur Industrial Area', ' Jaitaran', ' Didwana', ' Bhinmal',
-       ' Ranthambore', ' Jaisalmer', ' Abu Road',
-       ' RIICO Industrial Area Neemrana', ' Deoli', ' Kekri', ' Ahore',
-       ' Pratapgarh', ' Khatu', ' Udaipurwati', ' Chhabra', ' Bayana',
-       ' Sadri', ' Kuchera'], 
-       chandigarh:[' Chandigarh', ' Ludhiana', ' Karoran', ' Mohali', ' Panchkula',
-       ' Zirakpur', ' Chandi Mandir', ' Banur', ' Kharar', ' Dera Bassi',
-       ' Rajpura', ' Ambala', ' Sirhind Fatehgarh Sahib', ' Rupnagar',
-       ' Morinda', ' Naraingarh', ' Lalru', ' Haryana', ' Kurali'], 
-       Tamil_Nadu:[' Vellalur', ' Tuticorin', ' Chennai', ' Kuthalam',
-       ' Tiruchirappalli', ' Tamil Nadu', ' Thanjavur', ' Puduchatram',
-       ' Madurai', ' Gudiyatham', ' Tirupattur', ' Manamadurai',
-       ' Tirunelveli', ' Padirikuppam', ' Madukkur', ' Coimbatore',
-       ' Nagercoil', ' Periyamanali', ' Hosur', ' Erode', ' Tiruppur',
-       ' Vadipatti', ' Kayalpattinam', ' Krishnagiri', ' Neyveli',
-       ' Salem', ' Pudukkottai', ' Melpattampakkam', ' Thiruparankundram',
-       ' Manapparai', ' Anaiyur', ' Padappai', ' Virudhunagar',
-       ' Mayiladuthurai', ' Tenkasi', ' Cuddalore', ' Usilampatti',
-       ' Thiruvaiyaru', ' Vedaranyam', ' Kallakkurichi', ' Devadanapatti',
-       ' Sathankulam', ' Mohamed Bundur', ' Sivaganga', ' Thevaram',
-       ' Gummidipoondi', ' Sarcarsamakulam', ' Virudhachalam',
-       ' Rasipuram', ' Tiruvannamalai', ' Mulagumudu', ' Pacode',
-       ' Thiruvenkadam', ' Palangarai', ' Kovilpatti', ' Tambaram',
-       ' Vellore', ' Muttayyapuram', ' Sirumugai', ' Swamimalai',
-       ' Thiruporur', ' Tiruchendur', ' Devarshola', ' Nanjikottai',
-       ' Marthandam', ' Thisayanvilai', ' A Vellalapatti', ' Velur',
-       ' Palamedu', ' SIPCOT Perundurai', ' Melvisharam', ' Ambur',
-       ' Kariapatti', ' Thirumangalam', ' Tharangambadi', ' Ariyalur',
-       ' Chengalpattu', ' Paramakudi', ' Kumbakonam', ' Gangavalli',
-       ' Palladam', ' Athipatti', ' Ambasamudram', ' Ambattur', ' Ilanji',
-       ' Tiruchengode', ' Nandivaram-Guduvancheri', ' Orathanadu',
-       ' Karur', ' Palani', ' Thiruvarur', ' Kancheepuram',
-       ' Kulasekaram', ' Kolachal', ' Theni Allinagaram', ' Pollachi',
-       ' Kasipalayam', ' Ranipettai', ' Nagapattinam', ' Anthiyur',
-       ' Kuhalur', ' Perundurai', ' Malumichampatti', ' Sankarankoil',
-       ' Thathankuttai Nagapattinam District', ' Mettur', ' Ponneri',
-       ' Arcot', ' Gobichettipalayam', ' Sulur', ' Kakkalur', ' Dindigul',
-       ' Villupuram', ' Thottiyam', ' Ooty', ' Komarapalayam',
-       ' Balakrishnapuram', ' Thiruvallur', ' Madambakkam', ' Thuraiyur',
-       ' Vandavasi', ' Avadi', ' Dharapuram', ' Sirkali',
-       ' Maduranthakam'],
-       Jharkhand:[' Ranchi', ' Deoghar', ' Jamshedpur', ' Hazaribagh',
-       ' Jaridih Bazar', ' Bokaro Steel City', ' Kanke', ' Jharia Khas',
-       ' Giridih', ' Pakaur', ' Danguwapasi', ' Dhanbad', ' Mihijam',
-       ' Irba', ' Daltonganj', ' Bhuli', ' Palawa', ' Jasidih',
-       ' Latehar', ' Ramgarh Cantonment', ' Jamadoba', ' Lohardaga',
-       ' Ray', ' Sindri', ' Rajbhita', ' Jhumri Tilaiya', ' Telodih',
-       ' Jorapokhar', ' Chaibasa', ' Jharkhand', ' Nirsa', ' Phusro',
-       ' Domchanch', ' Borio', ' Barharwa', ' Basukinath', ' Churi',
-       ' Netarhat', ' Rehla', ' Gumla', ' Ratu', ' Barhi', ' Madhupur',
-       ' Baliari', ' Bermo', ' Sahibganj', ' Musabani', ' AEC Complex',
-       ' Charhi', ' Patratu', ' Bokaro Thermal Township', ' Isri',
-       ' Topchanchi', ' Bishnugarh', ' Ghatshila', ' Kodarma',
-       ' Gobindpur', ' Chatra', ' Ramgarh', ' Khunti', ' Saunda',
-       ' Godda', ' Dumka', ' Kuju', ' Lalpania', ' Baharagora', ' Garhwa',
-       ' Karma Tanr', ' Pathardih', ' Simdega', ' Chakulia',
-       ' Chakradharpur', ' Kailudih', ' Chauparan', ' Chirkunda',
-       ' Baua Kalan', ' Hussainabad', ' Gomoh', ' Okni No 2', ' Panchet',
-       ' Chandwa', ' Katras', ' Dhanwar', ' Jhinkpani', ' Mera',
-       ' Lakarka', ' Tenu', ' Deorikalan'], 
-       Maharashtra:[' Nashik', ' Mumbai', ' Sangli (-Miraj)', ' Shevgaon', ' Bhiwandi',
-       ' Latur', ' Sillod', ' Bhusawal', ' Satara', ' Wardha', ' Pune',
-       ' Thane', ' Navi Mumbai', ' Ichalkaranji', ' Malegaon', ' Ramtek',
-       ' Nagpur', ' Desaiganj', ' Chalisgaon', ' Majgaon', ' Sakoli',
-       ' Jamner', ' Chinchwad', ' Aurangabad', ' Amravati', ' Tumsar',
-       ' Hingoli', ' Boisar', ' Ulhasnagar', ' Nanded', ' Pandharpur',
-       ' Badlapur', ' Satana', ' Dadar', ' Akola', ' Karad', ' Kolhapur',
-       ' Maharashtra', ' Shendra MIDC', ' Pauni', ' Jawhar', ' Ratnagiri',
-       ' Hinganghat', ' Waluj MIDC', ' Ambajogai', ' Raigad District',
-       ' Nanded Waghala', ' Yavatmal', ' Wani', ' Guhagar', ' Shikrapur',
-       ' Ghoti', ' Bid', ' Indapur', ' Vada', ' Ahmadnagar', ' Faizpur',
-       ' Navghar-Manikpur', ' Manor', ' Naigaon', ' Udgir',
-       ' Roha Ashtami', ' Sonpeth', ' Dehu Cantt', ' Parbhani',
-       ' Vangani', ' Niphad', ' Tirora', ' Achalpur', ' Motala',
-       ' Jalgaon', ' Ellora', ' Khamgaon', ' Kagal', ' Rajgurunagar Khed',
-       ' Buldana', ' Waghoda', ' Dhule', ' Georai', ' Lonavala',
-       ' Phaltan', ' Loni Kalbhor', ' Kudal', ' Butibori', ' Akkalkuwa',
-       ' Murgud', ' Paithan', ' Shirur', ' Umri', ' Nandgaon', ' Morshi',
-       ' Gondiya', ' Kopargaon', ' Sangamner', ' Hudkeshwar',
-       ' Jaysingpur', ' Varangaon', ' Solapur', ' Bhandara', ' Navapur',
-       ' Bori Parbhani District', ' Manmad', ' Chandrapur',
-       ' Kadegaon MIDC', ' Ausa', ' Vita', ' Osmanabad'], Haryana:[' Panchkula', ' Ambala', ' Sonipat', ' Buria', ' Yamunanagar',
-       ' Kalanaur', ' Rewari', ' Mahendragarh', ' Karnal', ' Tohana',
-       ' Uklanamandi', ' Hisar', ' Faridabad', ' Gurgaon', ' Panipat',
-       ' Rohtak', ' Kalayat', ' Ganaur', ' Nissing', ' Bhiwani',
-       ' Gharaunda', ' Julana', ' Nagal Chaudhry', ' Farrukhnagar',
-       ' Haryana', ' Palwal', ' Charkhi Dadri', ' Ladwa', ' Bawal',
-       ' Naraingarh', ' Pinjore', ' Kurukshetra', ' Fatehabad',
-       ' Bahadurgarh', ' Sirsa', ' Jind', ' Hansi', ' Maham', ' Narnaul',
-       ' Sampla', ' Kalka', ' Gohana', ' Kharkhoda', ' Loharu',
-       ' Kaithal', ' Adampur', ' Kanina', ' Dharuhera', ' Jhajjar',
-       ' Rai Industrial Area', ' Chhachhrauli', ' Uchana', ' Pehowa',
-       ' Taoru', ' Siwani', ' Cheeka', ' Kundli Industrial Area',
-       ' Shahbad', ' Beri', ' Ratia', ' Kalanwali', ' Barara', ' Bhakali',
-       ' Safidon', ' Narnaund', ' Taraori', ' Panipat Refinery Township',
-       ' Binola Industrial Area', ' Ellenabad', ' Ismailabad', ' Barwala',
-       ' Ladrawan', ' Nuh', ' Sankhol', ' Pundri', ' Saha',
-       ' Chandi Mandir', ' Assandh', ' Ateli'], 
-       Kerala:[' Thiruvananthapuram', ' Wayanad', ' Kannur', ' Kottakal',
-       ' Taliparamba', ' Kochi', ' Manjeri', ' Punalur', ' Kozhikode',
-       ' Kottayam', ' Kothamangalam', ' Pantheeramkavu', ' Malappuram',
-       ' Chendamangalam', ' Kasaragod', ' Koratty', ' Panniyannur',
-       ' Paravur', ' Nannambra', ' Oachira', ' Ettumanoor', ' Vengola',
-       ' Pathanamthitta', ' Aluva', ' Guruvayur', ' Cheleri', ' Nilambur',
-       ' Kallelibhagom', ' Ottappalam', ' Mannarkad I', ' Palakkad',
-       ' Elampalloor', ' Kanhangad', ' Thrissur', ' Kumarakom',
-       ' Angamaly', ' Thodupuzha', ' Muvattupuzha', ' Peringathur',
-       ' Iringaprom', ' Villiappally', ' Vadakkekara', ' Erattupetta',
-       ' Pallikkal', ' Changanacheri', ' Venginissery', ' Attingal',
-       ' Vazhayur', ' Pottore', ' Irinjalakuda', ' Varappuzha', ' Kollam',
-       ' Neyyattinkara', ' Kayamkulam', ' Kalpetta', ' Mattannur',
-       ' Karunagappally', ' Kunnamkulam', ' Iriveri', ' Kodungallur',
-       ' Iringal', ' Kolazhy', ' Puthuppally', ' Cherthala',
-       ' Kunnathunad', ' Idukki Township', ' Parappur', ' Mayyanad',
-       ' Thrikkaruva', ' Perumbavoor', ' Elayavoor', ' Edathiruthy',
-       ' Avittathur', ' Kizhuparamba', ' Chalakudy', ' Alappuzha',
-       ' Munnar', ' Kondotty', ' Vylathur', ' Ayancheri',
-       ' Mulamthuruthy', ' Vadama', ' Alathur', ' Puthukkad',
-       ' Parasuvaikkal', ' Kodur', ' Manantheri', ' Nenmenikkara',
-       ' Alamcode Thiruvananthapuram District', ' Uppala', ' Panachikkad',
-       ' Vaikom', ' Choondal', ' Nedumangad', ' Mavelikkara',
-       ' Venkitangu', ' Chengamanad', ' Kadungalloor', ' Perole',
-       ' Vaniyamkulam II', ' Talakkad', ' Kulathummal', ' Kadamakkudy',
-       ' Vadakkekad', ' Palai', ' Paravoor', ' Dharmadom',
-       ' Cheruthazham', ' Varkala', ' Veluthur', ' Azhikode', ' Edappal',
-       ' Perinthalmanna', ' Vilappil', ' Marancheri', ' Vengara',
-       ' Manakunnam', ' Kuttippuram', ' Alur', ' Shoranur',
-       ' Kozhenchery', ' Panayam', ' Choornikkara', ' Payyannur',
-       ' Thiruvalla', ' Thrikkadavoor', ' Anthicad', ' Karikkad',
-       ' Kuruvattur', ' Poomangalam', ' Edavilangu', ' Meenad',
-       ' Olavanna', ' Eramalloor', ' South Thrikkaripur', ' Beypore',
-       ' Mavoor', ' Kalady Ernakulam District', ' Pavaratty',
-       ' Thalassery', ' Tirur', ' Kattappana', ' Kadikkad', ' Chowwara',
-       ' Kudlu'],
-        MadhyaPradesh:[' Jabalpur', ' Ujjain', ' Shujalpur', ' Bhopal',
-       ' Makronia Buzurg', ' Indore', ' Chhindwara', ' Shahdol', ' Rewa',
-       ' Guna', ' Mhow', ' Pasan', ' Betul', ' Morena', ' Karera',
-       ' Vindhya Nagar NTPC Township', ' Datia', ' Bamhani', ' Bhind',
-       ' Itarsi', ' Gwalior', ' Sihora', ' Sarni', ' Ratlam',
-       ' Katangi Balaghat District', ' Vidisha', ' Neemuch', ' Mehgaon',
-       ' Kasrawad', ' Burhanpur', ' Seoni', ' Singrauli', ' Panna',
-       ' Shahpur Sagar District', ' Harda', ' Bhanpura', ' Sonkatch',
-       ' Shivpuri', ' Madhya Pradesh', ' Ashoknagar', ' Anjad', ' Namli',
-       ' Dewas', ' Rajgarh Rajgarh District', ' Alot', ' Nagda',
-       ' Maneri Industrial Growth Centre', ' Pithampur', ' Basoda',
-       ' Niwari', ' Dhodaramohar Alias Bhoura', ' Burhar', ' Malajkhand',
-       ' Garra', ' Manasa', ' Sohagpur', ' Waraseoni', ' Satna',
-       ' Sanwer', ' Pipariya', ' Mandsaur', ' Kareli', ' Mandla',
-       ' Multai', ' Tikamgarh', ' Gadarwara', ' Hoshangabad', ' Sidhi',
-       ' Sanchi', ' Depalpur', ' Sheopur', ' Dabra', ' Malhargarh',
-       ' Khandwa', ' Pandhana', ' Raisen', ' Khargone', ' Gohad',
-       ' Sagar', ' Murwara Katni', ' Berasia', ' Porsa', ' Shajapur',
-       ' Narsimhapur', ' Chandameta Butaria', ' Dhamnod Dhar District',
-       ' Seoni Malwa', ' Ghoda Dongri Ryt', ' Mangalya', ' Seondha',
-       ' Tarana', ' Chhota Chhindwara', ' Pithampur Industrial Hub',
-       ' Jaora', ' Raymond Chhindwara', ' Alirajpur', ' Mandideep',
-       ' Rau', ' Ashta', ' Joura', ' Sehore', ' Sendhwa', ' Jobat',
-       ' Bina-Etawa', ' Semaria', ' Aron', ' Mungaoli', ' Nowgong',
-       ' Badnagar', ' Barghat', ' Balaghat', ' Banda'],
-       Odisha:[' Baleshwar', ' Sambalpur', ' Berhmapur', ' Godiputamatiapara',
-       ' Choudwar', ' Bhubaneshwar', ' Dhamanagar', ' Cuttack',
-       ' Sundargarh', ' Nagaon', ' Rambha', ' Rourkela', ' Junagarh',
-       ' Bargarh', ' Kantabanji', ' Gourdanda', ' G Udayagiri',
-       ' Lanjigarh', ' Anugul', ' Kamakshyanagar', ' Parlakhemundi',
-       ' Odisha', ' Puri', ' Bhadrak', ' Kendujhar', ' Karanjia',
-       ' Patrapur', ' Baripada', ' Joda', ' Dhenkanal', ' Lathikata',
-       ' Kalinga Nagar Industrial Area', ' Jhumpura', ' Balakati',
-       ' Kansbahal', ' Phulabani', ' Kesinga', ' Ranapurgada',
-       ' Malkangiri', ' OCL Industrial Township', ' Udala', ' Byasanagar',
-       ' Jharsuguda', ' Balugaon', ' Banki', ' Chhatrapur', ' Hirakud',
-       ' Khariar', ' Belpahar', ' Chandili', ' Golabandha', ' Remuna',
-       ' Jajapur', ' Kendrapara', ' Barapali', ' Brajarajnagar',
-       ' Badamba', ' Kochinda', ' Daringbadi', ' Chikiti', ' Papadahandi',
-       ' Burla', ' Pipili', ' Barbil', ' Jeypur', ' Buguda', ' Itamati',
-       ' Pattamundai', ' Kanheipur', ' Anjira', ' Jatani', ' Boudh',
-       ' Jaleswar', ' Charibatia', ' Balangir', ' Rajasunakhala',
-       ' Vedanta Jharsuguda', ' Khaliapali',
-       ' Talcher Thermal Power Station Township', ' Nayagarh',
-       ' Anandapur', ' Bhanjanagar', ' Brahmabarada', ' Sonapur',
-       ' Nuapatna', ' Bhuban', ' Nimapada', ' Banapur', ' Bhawanipatna',
-       ' Padmapur', ' Soro', ' JSPL Town Anugul Township',
-       ' Badmal Township', ' Jagatsinghapur', ' Krushnanandapur',
-       ' Majhihara', ' Nabarangapur', ' Bijepur', ' Asika', ' Titlagarh',
-       ' Talcher', ' Sohela', ' Polasara', ' Patnagarh', ' Tusura',
-       ' Dera Colliery Township', ' Tangi',
-       ' Bhushan Steel Plant Meramandali Township', ' Ganjam'],
-        Bihar:[' Barbigha', ' Bihar', ' Harnaut', ' Rajgir', ' Warisaliganj',
-       ' Silao', ' Patna', ' Mahnar Bazar', ' Fatwah', ' Nawada',
-       ' Sheikhpura', ' Barh', ' Mokameh', ' Ekangar Sarai', ' Hilsa',
-       ' Islampur', ' Hisua', ' Samastipur', ' NTPC Barh Township',
-       ' Masaurhi', ' Bakhtiarpur', ' Mohiuddinagar', ' Gaya'], 
-       Gujarat:[' Surat', ' Limbdi', ' Amreli', ' Vapi', ' Bharuch', ' Ahmedabad',
-       ' Navsari', ' Pardi', ' Vadodara', ' Rajkot', ' Dharampur',
-       ' Saputara', ' Dohad', ' Junagadh', ' Nadiad', ' Jamnagar',
-       ' Patdi', ' Petlad', ' Anand', ' Dhrangadhra', ' Vyara',
-       ' Bhavnagar', ' Padra', ' Anklesvar', ' Bhuj', ' Bardoli',
-       ' Palej', ' Tarsadi', ' Mahuva', ' Tharad', ' Dahej SIR',
-       ' Virpur Rajkot District', ' Gandhidham', ' Chalala',
-       ' Mandvi Kachchh District', ' Viramgam', ' Gandhinagar',
-       ' Bhachau', ' Surendranagar', ' Patan', ' Sihor', ' Unjha',
-       ' Valsad', ' Halol', ' Vijapur', ' Mundra', ' Mahesana', ' Jasdan',
-       ' Wankaner', ' Botad', ' Sutrapada', ' Chanod', ' Khambhalia',
-       ' Kharach', ' Kheralu', ' Palanpur', ' Gondal', ' Godhra',
-       ' Chanasma', ' Ambaliyasan', ' Umrala', ' Kakoshi', ' Halvad',
-       ' Karjan', ' Chorwad', ' Upleta', ' Songadh Tapi District',
-       ' Bechar Alias Becharaji', ' Keshod', ' Khambhat', ' Jambusar',
-       ' Baben', ' Porbandar', ' Dwarka', ' Una', ' Sarigam', ' Somnath',
-       ' Rajula', ' Balasinor', ' Veraval', ' Paddhari', ' Kalol',
-       ' Savarkundla', ' Gujarat', ' Jamjodhpur', ' Lunawada', ' Bhanvad',
-       ' Harij', ' Songadh Bhavnagar District', ' Sojitra', ' Bilimora',
-       ' Mangrol', ' Disa', ' Jamavala'],
-        West_Bengal:[' West Bengal', ' Ranaghat', ' Kolkata', ' Rajpur Sonarpur',
-       ' Gangarampur', ' Balichak', ' Jaynagar Mazilpur', ' Bidhannagar',
-       ' Raiganj', ' Kharagpur', ' Garh Kamalpur', ' Mathabhanga',
-       ' Medinipur', ' Hingalganj', ' Hooghly', ' Memari', ' Siliguri',
-       ' Milki', ' Ilambazar', ' Chaltia', ' Howrah',
-       ' Chandpur North Twenty Four Parganas District', ' Krishnanagar',
-       ' Durgapur', ' Deulia', ' Uttar Bagdogra', ' Kalimpong',
-       ' Chandannagar M.C.', ' Bally', ' Kalyani', ' Bardhaman',
-       ' Haringhata Farm', ' Chakdah', ' Suri', ' Bhangar Raghunathpur',
-       ' Baktarnagar', ' Malda', ' Koch Bihar', ' New Town', ' Deara',
-       ' Darjeeling', ' Serampore', ' Jiaganj Azimganj', ' Koyra',
-       ' Malbazar', ' Sainthia', ' Hijuli', ' Labhpur', ' Sobhaganj',
-       ' Jalpaiguri', ' Aiho', ' Parasia', ' Dalkhola', ' Asansol MC',
-       ' Alipurduar Rly Jnc', ' Behrampore', ' Lataguri',
-       ' Jagadanandapur', ' Alipurduar', ' Dhulasimla', ' Kotulpur',
-       ' Beldanga', ' Kodalia', ' Uttar Pirpur',
-       ' Raghunathpur Hugli District', ' Habra', ' Puruliya',
-       ' Shimulpur', ' Dhanyakuria', ' Bolpur', ' Haldia',
-       ' Banarhat Tea Garden', ' Mira', ' Anup Nagar', ' Rampurhat',
-       ' Raniganj', ' Bagula', ' Durllabhganj', ' Bankra', ' Kakdihi',
-       ' Nagdaha', ' Rangabhita', ' Chanddandaha', ' Jaygaon',
-       ' Samudragarh', ' Bansberia', ' Naridana', ' Sonamukhi',
-       ' Guskara', ' Kurseong', ' Chamrail',
-       ' Bakreshwar Thermal Power Township', ' Madhyamgram', ' Matla',
-       ' Mirik', ' Tamluk', ' Ukhra', ' Harharia Chak', ' Podara',
-       ' Kandi', ' Champdani', ' Murshidabad', ' Contai', ' Bahirgram',
-       ' Khantora', ' Kalaria', ' English Bazar', ' Adra',
-       ' Ichhapur Defence Estate Civil Township', ' Barunda'], 
-       Karnataka:[' Bengaluru', ' Hubballi', ' Mangaluru', ' Belur Industrial Area',
-       ' Manvi', ' Yelahanka', ' Nargund', ' Kalaburagi', ' Kudchi',
-       ' Gauribidanur', ' Belagavi', ' Varamballi', ' Chamrajnagar',
-       ' Gangawati', ' Kolar', ' Indi', ' Gadag Betigeri', ' Puttur',
-       ' Mysuru', ' Bidar', ' Nanjangud', ' Dharwad', ' Ballari',
-       ' Kundgol', ' Bhadravati', ' Sulya', ' Adyar', ' Mandya',
-       ' Hassan', ' Homnabad', ' Karnataka', ' Dobaspet Industrial Area',
-       ' Ranebennur', ' Kunigal', ' Shahpur', ' Ramdurg',
-       ' Mellahalli Mysore District', ' Yadgir', ' Madihal', ' Raichur',
-       ' Kotturu', ' Pavagada', ' Koppal', ' Arsikere', ' Sirsi',
-       ' Davanagere', ' Ankola', ' Lingsugur', ' Saligram', ' Tumakuru',
-       ' Shivamogga', ' Munirabad Project Area', ' Hosapete', ' Hunsur',
-       ' Vijayapura', ' Mahalingpur', ' Mulbagal', ' Kundapura',
-       ' Bagalkot', ' Channarayapatna', ' Udupi', ' Channagiri',
-       ' Chintamani', ' Moodabidri', ' Chikkamagaluru', ' Muduperar',
-       ' Belur', ' Thumbe', ' Bhatkal', ' JSW Steel Plant Township',
-       ' Periyapatna', ' Haveri', ' Londa', ' Chitradurga', ' Jamkhandi',
-       ' Hosdurga', ' Mundgod', ' Kamatgi', ' Pandavapura',
-       ' Hole Narsipur', ' Pudu', ' Honavar', ' Haliyal', ' Sidlaghatta',
-       ' Bannur', ' Bail Hongal', ' Navalgund', ' Lakshmeshwar',
-       ' Basavana Bagevadi', ' Channapatna', ' Hiriyur', ' Aland',
-       ' Kushalanagara', ' Yellapur', ' Ramanagara', ' Robertsonpet'], 
-       Punjab:[' Kharar', ' Karoran', ' Goniana', ' Malaut', ' Jagraon',
-       ' Amritsar', ' Dinanagar', ' Batala', ' Maraar Kalan', ' Patran',
-       ' Nakodar', ' Pathankot', ' Mullanpur Dakha', ' Firozpur',
-       ' Jandiala Amritsar District', ' Banur', ' Rupnagar',
-       ' Dera Bassi', ' Bathinda', ' Bhankarpur', ' Abohar',
-       ' Sirhind Fatehgarh Sahib', ' Ludhiana', ' Bhucho Mandi',
-       ' Patiala', ' Phagwara', ' Mukerian', ' Zirakpur', ' Mohali',
-       ' Talwara', ' Sri Hargobindpur', ' Tarantaran', ' Jalandhar',
-       ' Anandpur Sahib', ' Gobindgarh', ' Kot Ise Khan', ' Lalru',
-       ' Maur', ' Kurali', ' Kotkapura', ' Doraha', ' Qadian',
-       ' Giddarbaha', ' Punjab', ' Dirba', ' Malerkotla', ' Rajpura',
-       ' Sangrur', ' Guru Har Sahai', ' Nabha', ' Jalalabad',
-       ' Talwandi Sabo', ' Ahmedgarh', ' Hoshiarpur', ' Muktsar',
-       ' Patti', ' Urmar Tanda', ' Zira', ' Raikot', ' Morinda',
-       ' Khanna', ' Mansa', ' Nawanshahr', ' Hariana', ' Gurdaspur',
-       ' Sunam', ' Sujanpur', ' Mandi Govindgarh', ' Nurmahal',
-       ' Bhadson', ' Khanauri', ' Ajnala', ' Dhuri', ' Garhshankar',
-       ' Bhagta Bhai Ka', ' Sham Chauras I', ' Samrala', ' Manwal',
-       ' Sardulgarh', ' Jaitu', ' Rurki Kasba', ' Fazilka', ' Kapurthala',
-       ' Beas', ' Bassi Pathana', ' Banga', ' Faridkot', ' Barnala',
-       ' Samana', ' Chogawan', ' Goraya', ' Makhu', ' Bareta',
-       ' Raja Sansi', ' Moga', ' Mudal', ' Dasuya', ' Phillaur',
-       ' Alawalpur', ' Rampura Phul', ' Dhanaula', ' Dhilwan',
-       ' Bhikhiwind'],
-       Uttaranchal:[' Khatima', ' Dehradun', ' Selaqui', ' SIDCUL Haridwar',
-       ' Uttaranchal', ' Sitarganj', ' Haridwar', ' Jaspur', ' Roorkee',
-       ' Rudrapur', ' Doiwala', ' Ramnagar', ' Haldwani',
-       ' Piran Kaliyar', ' Bhagwanpur', ' Laksar', ' Mussoorie',
-       ' Herbertpur', ' Bahadarabad', ' Kashipur', ' Rishikesh',
-       ' Fatehpur Range Civil Township', ' Kathgodam', ' Lalkuan',
-       ' Kirtinagar', ' Gadarpur', ' Jhabrera', ' Manglaur', ' Lansdowne',
-       ' Mahua Kheraganj', ' Kotdwara', ' Pithoragarh', ' Landhaura',
-       ' Ranikhet', ' Gopeshwar', ' Almora', ' Pauri', ' Barkot',
-       ' Chamba', ' Nainital', ' Gangolihat', ' Srinagar', ' Banbasa',
-       ' New Tehri', ' Gochar', ' Vikasnagar', ' Mahua Dabra Haripura',
-       ' Sara Industrial Estate', ' Natthuwa Wala', ' Tanakpur',
-       ' Uttarkashi', ' Mukteshwar', ' Corbett', ' Bhowali',
-       ' Kachnal Gosain', ' Dhanaulti', ' Nagla', ' Chamoli',
-       ' Karnaprayag', ' Bazpur', ' Tehri', ' Pratitnagar', ' Bageshwar',
-       ' SIDCUL Kotadwara'], 
-       Telangana:[' Hyderabad', ' Kodad', ' Karimnagar', ' Kondamallapalle',
-       ' Nizambad', ' Ramannapeta', ' Koratla', ' Warangal',
-       ' Sathupally', ' Secunderabad', ' Khammam', ' Jannaram',
-       ' Sircilla', ' Miryalaguda', ' Dornakal', ' Telangana', ' Chitkul',
-       ' Ghanpur Nizamabad District', ' Allipur', ' Mahbubnagar',
-       ' Asifabad', ' Pothreddipalle', ' Tandur', ' Pargi', ' Bodhan',
-       ' Nirmal', ' Kukatpally', ' Naspur', ' Yellareddy', ' Siddipet',
-       ' Palwancha', ' Huzur Nagar', ' Kothagudem', ' Metapally',
-       ' Sarapaka', ' Narayanpet', ' Kapra', ' Chinnachitakunta',
-       ' LB Nagar', ' Narayankhed', ' Jangaon', ' Vemulawada', ' Armur',
-       ' Gadwal', ' Ieeja', ' Bellampalle', ' Jagtial', ' Palakurthy',
-       ' Chennur', ' Medak', ' Nagarkurnool', ' Tallada',
-       ' Ghanpur Warangal District', ' Kisan Nagar Industrial Area',
-       ' Jammikunta', ' Wanaparthy', ' Gajwel', ' Achampet',
-       ' Bheema Cements Limited Ramapuram', ' Ichoda', ' Ramagundam',
-       ' Thorrur', ' Utnur', ' Kyathampalle', ' Mahabubabad',
-       ' Kalwakurthy'], Assam:[' Silchar', ' Guwahati', ' Assam', ' Tezpur',
-       ' Hindustan Paper Corporation Ltd Township Panchgram', ' Lala',
-       ' Bhomoraguri AIDC', ' Tinsukia', ' Lanka', ' Lido Town',
-       ' Lakhipur Cachar District', ' Sarupathar', ' Howli', ' Dibrugarh',
-       ' Gohpur', ' Niz Katigorah Pt III', ' Doboka', ' Dhemaji',
-       ' Rangia', ' Lakhipur Goalpara District', ' Niz Hajo',
-       ' Karimganj', ' Nagaon', ' Kalaigaon Town Part', ' Badarpur',
-       ' Titabor Town', ' Goalpara', ' Bongaigaon', ' BCPL Township',
-       ' Howraghat', ' Margherita', ' Haflong', ' Sibsagar',
-       ' Hailakandi', ' Bongaigaon RPCL Township', ' Golaghat',
-       ' Jonai Bazar', ' North Lakhimpur', ' Jamunamukh', ' Jorhat',
-       ' Dergaon', ' Barpeta', ' Diphu', ' Gossaigaon', ' Digaru Gaon',
-       ' Bilasipara', ' Biswanath Chariali', ' Abhayapuri', ' Nalbari',
-       ' Dhing', ' Udalguri', ' Moranhat', ' Rangapara', ' Kharijapikon',
-       ' Dhekiajuli', ' Mangaldoi', ' Narayanpur Nalbari District',
-       ' Sepon', ' Kharupatia', ' Pub Dhaniram Pather', ' Nahira',
-       ' Bihpuria', ' Mariani', ' Numaligarh Refinery Township', ' Bijni',
-       ' Golokganj', ' Nazira', ' Moran Town', ' Naharkatiya', ' Hojai',
-       ' Bhuragaon', ' Kokrajhar', ' Dhekorgorha', ' Sonari',
-       ' Chapakhowa Town', ' Chapar', ' Sapatgram', ' Marigaon',
-       ' Irongmara', ' Azara', ' Lumding', ' Belsor', ' Doom Dooma',
-       ' Kamalabaria NC', ' Majgaon', ' Duliajan',
-       ' New Bongaigaon Railway Colony', ' Makum Tinsukia District',
-       ' Digboi', ' North Guwahati', ' Barpathar', ' Badarpur Rly Town',
-       ' Kochpara', ' Changsari', ' Raha', ' Tangla', ' Basugaon',
-       ' Dhubri', ' Pathsala'], 
-       UttarPradesh:[' Lucknow', ' Noida', ' Ghaziabad', ' Muradnagar', ' Saharanpur',
-       ' Deoria', ' Behta Hazipur', ' Gajraula', ' Meerut', ' Rampur',
-       ' Kanth Shahjahanpur District', ' Kora Jahanabad', ' Saraon',
-       ' Titron', ' Shahjahanpur', ' Aligarh', ' Fatehganj Purvi',
-       ' Orai Jalaun District', ' Naugarh', ' Vrindavan', ' Moradabad',
-       ' Mohammadabad Ghazipur District', ' Gagalhedi Must', ' Jasra',
-       ' Daurala', ' Kanpur', ' Varanasi', ' Kailashpur', ' Gorakhpur',
-       ' Bidhuna', ' Bareilly', ' Greater Noida', ' Garauri', ' Mirzapur',
-       ' Bulandshahr', ' Maswasi', ' Sadatmasaura', ' Agra', ' Jansath',
-       ' Gola Gokarannath', ' Aonla', ' Barabanki', ' Jaunpur', ' Bhinga',
-       ' Sahanpur', ' Nivi', ' Chhutmalpur', ' Ahraura', ' Harraiya',
-       ' Baraut', ' Bhatpar Rani', ' Pilibhit', ' Bangarmau', ' Gangoh',
-       ' Allahabad', ' Katra Shahjahanpur District', ' Mahul Khas',
-       ' Jahangirpur', ' Mehdawal', ' Kathaura', ' Sambhal',
-       ' Muzaffarnagar', ' Ballia', ' Sitapur', ' Sarai Mir', ' Fatehpur',
-       ' Tanda Rampur District', ' Lakhimpur', ' Miranpur',
-       ' Nawabganj Bareilly District', ' Azmatgarh',
-       ' Leather Park Banthar', ' Firozabad', ' Patti', ' Unnao',
-       ' Faizabad', ' Haldaur', ' Hapur', ' Pakbara', ' Mariahu',
-       ' Baksar', ' Kushinagar', ' Amroha', ' Loni', ' Azamgarh',
-       ' Dadri', ' Baheri', ' Bijnor', ' Mathura', ' Kithaur', ' Sirathu',
-       ' Kunda', ' Uttar Pradesh', ' Patiyali', ' Nizamabad', ' Shahpur',
-       ' Singahi Bhiraura', ' Kasganj', ' Padrauna', ' Barhalganj',
-       ' Thiriya Nizamat Khan', ' Ghatampur', ' Rasra', ' Gonda',
-       ' Thakurdwara', ' Hathras', ' Suthana Barsola', ' Akbarpur',
-       ' Jhansi', ' Sakaldiha', ' Machhlishahr', ' Hargaon', ' Chakia',
-       ' Bhojpur Dharampur', ' Mohan', ' Bahraich', ' Pipraich',
-       ' Parasi', ' Musafirkhana', ' Umri Kalan', ' Handia', ' Shamli',
-       ' Purquazi', ' Budhana', ' Sherkot', ' Gola Bazar', ' Niwari',
-       ' Kursi Road Industrial Area', ' Belthara Road', ' Saiyad Raja',
-       ' Maunath Bhanjan', ' Pilkhuwa', ' Kurthi Jafarpur', ' Kotwali',
-       ' Bihka', ' Gursahaiganj', ' Richha', ' Chandauli', ' Modinagar',
-       ' Parikshitgarh', ' Khurja', ' Ghazipur',
-       ' Gosainganj Faizabad District', ' Sewalkhas',
-       ' Mahrajganj Azamgarh District', ' Bilsanda', ' Mainpuri',
-       ' Mughalsarai', ' Kemri', ' Khargupur', ' Shahganj', ' Rae Bareli',
-       ' Gabhana', ' Gaura Barhaj', ' Korwa', ' Ghorawal', ' Konch',
-       ' Sultanpur', ' Jangipur', ' Artauni', ' Etawah', ' Chhata',
-       ' Behat', ' Kannauj', ' Babugarh', ' Balrampur', ' Basti',
-       ' Hasanpur', ' Kakari', ' Faridnagar', ' Budaun', ' Shahabad',
-       ' Sewarhi', ' Ayodhya', ' Shikohabad', ' Khutar', ' Sikandra Rao'], 
-       Delhi:['Delhi']
-    }
-    var modelsByBike ={
-      Bajaj:['Pulsar', 'Avenger', 'CT 100', 'Platina', 'Others', 'Discover'],KTM:['390 Duke ABS', 'Others', 'RC', 'Duke 200'],Royal_Enfield:['Bullet', 'Continental GT', 'Classic', 'Thunderbird', 'Others'],Yamaha:['FZ', 'Others', 'FZS', 'Saluto', 'YZF R', 'SZ', 'Fazer', 'Crux',
-       'Vmax', 'SS 125', 'YBR'],Honda:['Others', 'CB', 'CBF Stunner', 'CD 110 Dream', 'CBR', 'Dream Yuga'],Hero:['Passion', 'Glamour', 'Splendor', 'Others', 'Karizma', 'CBZ',
-       'Deluxe', 'CD Deluxe', 'Super Splendor', 'CD Dawn', 'Ignitor',
-       'Hunk', 'Achiever', 'CD 100', 'Impulse', 'HX 250 R', 'Ambition',
-       'Dawn'],Other_Brands:['Others'],TVS:['Others', 'Apache RTR', 'Star City Plus', 'Heavy Duty Super XL',
-       'Star Sport', 'Phoenix'],Suzuki:['GS', 'Gixxer', 'Others', 'Slingshot', 'Hayate', 'GSX', 'Hayabusa',
-       'Bandit', 'Access', 'M800'],Hero_Honda:['CBZ', 'Passion', 'Splendor', 'Others', 'Glamour', 'Hunk',
-       'Super Splendor', 'CD Deluxe', 'CD 100', 'Achiever', 'Karizma',
-       'Ambition', 'Deluxe', 'Street', 'CD Dawn', 'Ignitor', 'Dawn']
-
-
-    }    
-  
-    function makeSubmenu(value) {
-    if(value.length==0) document.getElementById("citySelect").innerHTML = "<option></option>";
-    else {
-    var citiesOptions = "";
-    for(cityId in citiesByState[value]) {
-    citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
-    }
-        document.getElementById("citySelect").innerHTML = citiesOptions;
-    }
-    }
-
-    
-</script>
-
-<script type="text/javascript">
-    function makeSubmenu1(value) 
-    {
-    if(value.length==0) document.getElementById("modelSelect").innerHTML = "<option></option>";
-    else {
-    var modelsOptions = "";
-    for(modelId in modelsByBike[value]) {
-    modelsOptions+="<option>"+modelsByBike[value][modelId]+"</option>";
-    }
-    document.getElementById("modelSelect").innerHTML = modelsOptions;
-    }
-    }
-
-    function resetSelection() 
-    {
-    document.getElementById("countrySelect").selectedIndex = 0;
-    document.getElementById("citySelect").selectedIndex = 0;
-    document.getElementById("bikeSelect").selectedIndex = 0;
-    document.getElementById("modelSelect").selectedIndex = 0;
-    document.getElementById("Kilo-Meter").selectedIndex = 0;
-    document.getElementById("year").selectedIndex = 0;
-
-
-    }
-    function displaySelected() 
-    { 
-      var country = document.getElementById("countrySelect").value;
-      var city = document.getElementById("citySelect").value;
-      var bike=document.getElementById("bikeSelect").value;
-      var model=document.getElementById("modelSelect").value;
-      var kilo=document.getElementById("Kilo-Meter").value;
-      var year=document.getElementById("year").selectedIndex.value;
-
-
-
-      alert(country+"\n"+city+"\n"+bike+"\n"+model+"\n"+kilo+"\n"+year);
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
 }
-</script>
+</style>
 </head>
-
 <body>
 
-  <nav class="navbar">
-    <div class="nav-inner">
-      <a class="brand" href="#">
-        <span class="brand-mark">MG</span>
-        <span>Moto Gauge</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#valuation">Check Price</a>
-        <a href="#guide">How It Works</a>
-        <a href="#about">About</a>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+  <div class="header">
+  <img src="static/images/logo.jpg" alt="logo" />
+  <h1>Used Bikes Price Predictor</h1>
+</div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"></a>
     </div>
-  </nav>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Check Price</a></li>
+        <li><a href="#">Go To Form</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <main>
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Used Bike Price Estimator</span>
-        <h1>Know the <span>right value</span> before you buy or sell.</h1>
-        <p class="hero-copy">
-          Get an accurate estimate of your used bike’s fair market value 
-          based on its key details and current market factors.
-        </p>
-      </div>
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <h2 class="margin">Check Price of Used Bikes</h2>
+  <img src="/static/images/bikeha.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bikeprice" width="350" height="350">
+  <h3>Check the price below</h3>
+  <h5>Our website suggests used bike valuation through its basic and premium reports. While buying a used bike, it is very important to understand fair market price at that point of time.You can check used bike price of any bike model produced by any manufacture like Suzuki, Hyundai, TVS, Honda, Royal Enfield, etc.</h5><br>
+      <form action="{{url_for('predict')}}"method='post'>
+      <ul class="list-group">
+          <li>
+            <label for="Kilo-Meter">Enter The Kilometer Driven</label><br>
+            <input type="text" id="Kilo-Meter" name="Kilo-Meter">
+          </li>
+          <li>
+            <label for="text">Enter the Manufacture Year</label><br>
+            <input type="text" id="year" name="year">
+          </li>
+          <li>
+            <p>Choose Bike Name  & Model</p>
+            <select name="bikeSelect" id="bikeSelect" size="1" onchange="makeSubmenu1(this.value)">
+            <option value="" selected='selected'>Choose Brand</option>
+            <option>Bajaj</option>
+            <option>KTM</option>
+            <option>Royal_Enfield</option>
+            <option>Yamaha</option>
+            <option>Honda</option>
+            <option>Other_Brands</option>
+            <option>Suzuki</option>
+            <option>Hero_Honda</option>
+          </select>
+            <select name="modelSelect" id="modelSelect" size="1" >
+            <option value="" selected='selected'>Choose Model</option>
+          </select>
+          </li>
 
-      <div class="hero-image">
-        <img src="/static/images/bikeha.jpg" alt="Used bike valuation">
-      </div>
-    </section>
+            <li>  <p>Choose State & City</p>
+            <select name="countrySelect" id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+            <option value="" selected='selected'>Choose State</option>
+            <option>AndhraPradesh</option>
+            <option>Rajasthan</option>
+            <option>chandigarh</option>
+            <option>Tamil_Nadu</option>
+            <option>Jharkhand</option>
+            <option>Maharashtra</option>
+            <option>Haryana</option>
+            <option>Kerala</option>
+            <option>MadhyaPradesh</option>
+            <option>Odisha</option>
+            <option>Bihar</option>
+            <option>Gujarat</option>
+            <option>West_Bengal</option>
+            <option>Karnataka</option>
+            <option>Punjab</option>
+            <option>Uttaranchal</option>
+            <option>Telangana</option>
+            <option>Assam</option>
+            <option>UttarPradesh</option>
+            <option>Delhi</option>
+          </select>
+          <select name="citySelect" id="citySelect" size="1" >
+              <option value="" selected='selected'>Choose City</option>
+          </select> 
+          </li>                 
+      </ul>    
+    <input type="submit" class="btn btn-primary btn-block btn-large"> 
+  </form>
+  
+      <h4>{{  prediction_text  }}</h4><br>
+      <p>Enter the details and sit back you will get your bike price of your bike </p>
+      <br><button class="btn btn-default btn-lg">Get in Touch</button>
+    </div>
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-signal logo"></span>
+    </div>
+  </div>
+</div>
 
-    <section class="section" id="valuation">
-      <div class="card form-card">
-        <div class="section-heading">
-          <h2>Check your bike's price</h2>
-          <p>Enter the bike details below to generate your valuation.</p>
-        </div>
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo slideanim"></span>
+    </div>
+  </div>
+</div>
+</div>
 
-        <form action="{{ url_for('predict') }}" method="post">
-          <div class="form-grid">
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
+  <h3 class="margin">Stepwise Guide to Check Used Bike Price</h3>
+  <p> <li>Select Category – In this case, Bike</li>
+      <li>Having selected the category, decide the brand you wish to buy or sell under the make drop-down menu. E.g. Suzuki</li>
+      <li>Choose the particular model you wish to buy or sell. E.g. Gixxer</li>
+      <li>Enter the model year of the vehicle. E.g. 2017</li>
+      <li>Choose the Location: State and City. E.g.Maharashtra , Mumbai</li>
+      <li>Enter km drove if you are specific about it. E.g. 15,000</li>
+      <li>Click Submit</li></p>
+  <a href="#" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-search"></span> Go To Form
+  </a>
+</div>
 
-            <div class="field">
-              <label for="Kilo-Meter">Kilometers Driven</label>
-              <input
-                type="text"
-                id="Kilo-Meter"
-                name="Kilo-Meter"
-                placeholder="e.g. 15,000"
-              >
-              <p class="helper">Approximate distance already driven.</p>
-            </div>
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">    
+  <h3 class="margin">What is Used bike valuation?</h3><br>
+  <p>Used bike valuation is the process of finding used bike price at present time at a given place. With our website user can easily check used bike price just by selecting make, model, year, trim and KMs driven. The Used bike valuation depends on various factors such as current condition, year of purchase etc. Valuation of Used bike cannot have a correct price tag; it will always be a fair range of price.
+    A bike starts depreciating its value once it moves out of the showroom and with time it depreciates almost half of
+    its original price.The owner of the bike also does not have the clear understanding of its fair valuation.</p>
+  <div class="row">
+    <div class="col-sm-4">
+      
+      <img src="static/images/bike1.jpg" class="img-responsive margin" style="width:100%" alt="bpp">
+    </div>
+    <div class="col-sm-4"> 
+      <img src="static/images/bike2.jpg" class="img-responsive margin" style="width:100%" alt="bpp">
+    </div>
+    <div class="col-sm-4"> 
+      <img src="static/images/bike3.jpg" class="img-responsive margin" style="width:100%" alt="bpp">
+    </div>
+  </div>
+</div>
 
-            <div class="field">
-              <label for="year">Manufacture Year</label>
-              <input
-                type="text"
-                id="year"
-                name="year"
-                placeholder="e.g. 2017"
-              >
-              <p class="helper">Enter the vehicle's manufacture year.</p>
-            </div>
-
-            <div class="field full">
-              <span class="field-label">Bike Name &amp; Model</span>
-              <div class="two-fields">
-                <select
-                  name="bikeSelect"
-                  id="bikeSelect"
-                  size="1"
-                  onchange="makeSubmenu1(this.value)"
-                >
-                  <option value="" selected="selected">Choose Brand</option>
-                  <option>Bajaj</option>
-                  <option>KTM</option>
-                  <option>Royal_Enfield</option>
-                  <option>Yamaha</option>
-                  <option>Honda</option>
-                  <option>Other_Brands</option>
-                  <option>Suzuki</option>
-                  <option>Hero_Honda</option>
-                </select>
-
-                <select name="modelSelect" id="modelSelect" size="1">
-                  <option value="" selected="selected">Choose Model</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field full">
-              <span class="field-label">State &amp; City</span>
-              <div class="two-fields">
-                <select
-                  name="countrySelect"
-                  id="countrySelect"
-                  size="1"
-                  onchange="makeSubmenu(this.value)"
-                >
-                  <option value="" selected="selected">Choose State</option>
-                  <option>AndhraPradesh</option>
-                  <option>Rajasthan</option>
-                  <option>chandigarh</option>
-                  <option>Tamil_Nadu</option>
-                  <option>Jharkhand</option>
-                  <option>Maharashtra</option>
-                  <option>Haryana</option>
-                  <option>Kerala</option>
-                  <option>MadhyaPradesh</option>
-                  <option>Odisha</option>
-                  <option>Bihar</option>
-                  <option>Gujarat</option>
-                  <option>West_Bengal</option>
-                  <option>Karnataka</option>
-                  <option>Punjab</option>
-                  <option>Uttaranchal</option>
-                  <option>Telangana</option>
-                  <option>Assam</option>
-                  <option>UttarPradesh</option>
-                  <option>Delhi</option>
-                </select>
-
-                <select name="citySelect" id="citySelect" size="1">
-                  <option value="" selected="selected">Choose City</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="submit-row">
-            <p class="helper">
-              Your existing Flask <code>predict</code> endpoint handles the submission.
-            </p>
-            <input type="submit" class="btn btn-primary" value="Calculate Bike Price">
-          </div>
-        </form>
-
-        <div class="prediction">
-          <p class="prediction-title">Estimated valuation</p>
-          <h3>{{ prediction_text }}</h3>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="guide">
-      <div class="section-heading">
-        <h2>How it works</h2>
-        <p>A simple flow from bike details to valuation.</p>
-      </div>
-
-      <div class="info-grid">
-        <div class="card info-card">
-          <div class="info-number">01</div>
-          <h3>Select the bike</h3>
-          <p>Choose the manufacturer and then select the model from the dynamically populated dropdown.</p>
-        </div>
-
-        <div class="card info-card">
-          <div class="info-number">02</div>
-          <h3>Add vehicle details</h3>
-          <p>Enter the manufacture year and approximate kilometers driven.</p>
-        </div>
-
-        <div class="card info-card">
-          <div class="info-number">03</div>
-          <h3>Choose location</h3>
-          <p>Select the state first. The city dropdown is then populated using the existing JavaScript logic.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="card about">
-        <div>
-          <span class="eyebrow">About valuation</span>
-          <h2>A cleaner way to understand used-bike pricing.</h2>
-          <p>
-            Used bike valuation estimates a fair market range based on factors
-            such as model, manufacture year, kilometers driven and location.
-            The result should be treated as an estimate rather than an exact
-            resale price.
-          </p>
-        </div>
-
-        <div class="gallery">
-          <img src="/static/images/bike1.jpg" alt="Bike">
-          <img src="/static/images/bike2.jpg" alt="Bike">
-          <img src="/static/images/bike3.jpg" alt="Bike">
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © Copyright - sandeep komal - 2026
-  </footer>
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>© Copyright - sandeep komal -2022 </p> 
+</footer>
 
 </body>
 </html>
