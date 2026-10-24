@@ -21,6 +21,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install flake8 pytest
           python -m pip install -r requirements.txt
+      - name: Verify Pillow security version
+        run: python -c "from PIL import __version__; print('Pillow:', __version__); assert tuple(map(int, __version__.split('.')[:2])) >= (13, 0)"
+      - name: Smoke-test saved ML artifacts
+        run: |
+          python - <<'PY'
+          import joblib
+          for path in ("simifinal.pkl", "ohe.joblib"):
+              artifact = joblib.load(path)
+              print(f"Loaded {path}: {type(artifact).__name__}")
+          PY
       - name: Lint with flake8
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
